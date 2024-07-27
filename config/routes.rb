@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   resources :users do
     resources :uploads
   end
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
 
   # Set the root route to the landing action in PagesController
   root to: 'pages#landing'
+
+  # Route for Learn More page
+  get 'learn_more', to: 'pages#learn_more'
 end
 
 

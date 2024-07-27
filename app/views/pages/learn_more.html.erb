@@ -1,228 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Qapture</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn More - Qapture</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1>Capture Moments, Share Joy</h1>
-            <p>Your Digital Memory Box for Every Event</p>
-        </div>
+    <header>
+        <img id="logo" src="logo.png" alt="Qapture Logo">
+        <nav class="buttons">
+            <a href="/learn_more" class="button">Learn More</a>
+            <a href="#" class="button">Scan Here</a>
+            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        </nav>
     </header>
 
-    <section class="introduction">
-        <div class="container">
-            <p>Welcome to Qapture, the digital memory box that revolutionizes how you capture, share, and relive your most cherished moments. Whether it’s a wedding, birthday, or corporate event, Qapture ensures that every memory is preserved and shared effortlessly.</p>
+    <main class="container">
+        <div class="section">
+            <h1>Welcome to Qapture!</h1>
+            <p>Qapture is your digital memory box, designed to capture, share, and relive precious moments from your special events. Whether it's a wedding, birthday, or any celebration, Qapture makes it easy to gather all your photos and videos in one place, accessible to everyone you care about.</p>
         </div>
-    </section>
 
-    <section class="features">
-        <div class="container">
-            <div class="feature">
-                <h2>Seamless Photo Sharing</h2>
-                <p>Effortlessly upload and share photos from your event with all attendees.</p>
-            </div>
-            <div class="feature">
-                <h2>Video Messages</h2>
-                <p>Collect heartfelt video messages from your guests, adding a personal touch to your memory box.</p>
-            </div>
-            <div class="feature">
-                <h2>Digital Memory Box</h2>
-                <p>Create a lasting digital keepsake that holds all your event’s memories in one place.</p>
-            </div>
-            <div class="feature">
-                <h2>Easy Access</h2>
-                <p>Access your memories anytime, anywhere via our intuitive web app.</p>
-            </div>
-            <div class="feature">
-                <h2>QR Code Invitations</h2>
-                <p>Simplify the process of inviting guests to contribute with unique QR codes.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="how-it-works">
-        <div class="container">
+        <div class="section">
             <h2>How It Works</h2>
+            <p><strong>Simple and Seamless</strong></p>
             <ol>
-                <li>Create an Event: Set up your event in just a few clicks.</li>
-                <li>Invite Guests: Share your unique event QR code with guests to enable contributions.</li>
-                <li>Capture Memories: Guests can upload photos, videos, and messages during the event.</li>
-                <li>Enjoy and Share: Relive the event anytime with your beautifully organized digital memory box.</li>
+                <li><strong>Create an Event:</strong> Start by creating an event on Qapture.</li>
+                <li><strong>Invite Guests:</strong> Share a unique QR code with your guests.</li>
+                <li><strong>Capture Moments:</strong> Guests can upload photos and videos directly to your event page.</li>
+                <li><strong>Relive Memories:</strong> Access and enjoy all the shared moments in one digital album.</li>
             </ol>
         </div>
-    </section>
 
-    <section class="visual-showcase">
-        <div class="container">
-            <h2>Gallery of Images/Videos</h2>
-            <div class="gallery">
-                <!-- Showcase images and videos here -->
-            </div>
+        <div class="section">
+            <h2>Key Features</h2>
+            <p><strong>Qapture offers a range of features to make your experience exceptional:</strong></p>
+            <ul>
+                <li><strong>Event Creation:</strong> Set up your event in minutes and start inviting guests.</li>
+                <li><strong>QR Code Invitations:</strong> Easily share your event with guests using a scannable QR code.</li>
+                <li><strong>Photo and Video Uploads:</strong> Guests can upload high-quality photos and videos directly from their devices.</li>
+                <li><strong>User-Friendly Interface:</strong> An intuitive design that makes it easy for everyone to use.</li>
+                <li><strong>Responsive Design:</strong> Enjoy a seamless experience on any device, whether it's a phone, tablet, or computer.</li>
+            </ul>
         </div>
-    </section>
 
-    <section>
-        <div>
-            <h2>Ready to capture and share your memories?</h2>
-            <p>Sign up now and start your first event with Qapture!</p>
-            <%= link_to 'Get Started', new_user_registration_path, class: 'button' %>
+        <div class="section">
+            <h2>Benefits</h2>
+            <p><strong>Why Choose Qapture?</strong></p>
+            <ul>
+                <li><strong>Convenience:</strong> No more chasing down photos from different people; everything is in one place.</li>
+                <li><strong>Community:</strong> Foster a sense of community by sharing and enjoying memories together.</li>
+                <li><strong>Security:</strong> Your memories are safe with us, thanks to our secure platform.</li>
+                <li><strong>Cost-Effective:</strong> Save on professional photography costs by leveraging your guests' photos.</li>
+            </ul>
         </div>
-    </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="contact-info">
-                <p>Email: support@qapture.com</p>
-                <div class="social-media">
-                    <%= link_to image_tag('facebook-icon.png', alt: 'Facebook'), '#' %>
-                    <%= link_to image_tag('instagram-icon.png', alt: 'Instagram'), '#' %>
-                    <%= link_to image_tag('twitter-icon.png', alt: 'Twitter'), '#' %>
-                </div>
-            </div>
-            <div class="links">
-                <%= link_to 'Home', root_path %>
-                <%= link_to 'FAQs', faqs_path %>
-                <%= link_to 'Privacy Policy', privacy_policy_path %>
-                <%= link_to 'Terms of Service', terms_of_service_path %>
-            </div>
+        <div class="section testimonials">
+            <h2>Testimonials</h2>
+            <p><em>“Qapture made my wedding so much more memorable. I loved seeing all the candid moments captured by my friends and family!”</em> - Jane D.</p>
+            <p><em>“We used Qapture for our family reunion, and it was a hit! Everyone could easily share and view photos.”</em> - Mark S.</p>
         </div>
+
+        <div class="section faq">
+            <h2>FAQs</h2>
+            <dl>
+                <dt>Q: How do I create an event?</dt>
+                <dd>A: Simply sign up, click on 'Create Event,' fill in the details, and you're ready to go!</dd>
+
+                <dt>Q: Is there a limit to the number of photos or videos I can upload?</dt>
+                <dd>A: There are no limits; you and your guests can upload as many photos and videos as you like.</dd>
+
+                <dt>Q: How secure is Qapture?</dt>
+                <dd>A: We use advanced security measures to ensure your data is safe and private.</dd>
+
+                <dt>Q: Can I download the photos and videos later?</dt>
+                <dd>A: Yes, you can download all the shared media from your event page at any time.</dd>
+
+                <dt>Q: Is Qapture free to use?</dt>
+                <dd>A: Yes, Qapture offers a free version with all essential features. We also offer premium plans for additional benefits.</dd>
+            </dl>
+        </div>
+    </main>
+
+    <div class="dropdown-menu">
+        <a href="/">Home</a>
+        <a href="/events">Events</a>
+        <a href="/signup">Sign Up</a>
+        <a href="/signin">Sign In</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Qapture. All rights reserved.</p>
     </footer>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 50px 0;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        .header p {
-            margin: 10px 0 0;
-            font-size: 1.2em;
-        }
-        .introduction, .features, .how-it-works, .visual-showcase, .call-to-action {
-            padding: 50px 0;
-            text-align: center;
-        }
-        .features .feature {
-            margin-bottom: 30px;
-        }
-        .features h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        .how-it-works h2, .call-to-action h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        .how-it-works ol {
-            list-style: decimal inside;
-            text-align: left;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .visual-showcase .gallery {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .call-to-action p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        .call-to-action .button {
-            padding: 10px 20px;
-            font-size: 1em;
-            color: #fff;
-            background: #333;
-            border: none;
-            text-decoration: none;
-        }
-        .footer {
-            background: #f8f8f8;
-            text-align: center;
-            padding: 20px 0;
-            color: #333;
-        }
-        .footer .contact-info {
-            margin-bottom: 20px;
-        }
-        .footer .social-media img {
-            width: 24px;
-            margin: 0 10px;
-        }
-        .footer .links a {
-            margin: 0 10px;
-            color: #333;
-            text-decoration: none;
-        }
-    </style>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Qapture</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-  <header class="header">
-    <div class="container">
-      <h1>Capture Moments, Share Joy</h1>
-      <p>Your Digital Memory Box for Every Event</p>
-    </div>
-  </header>
 
-  <section class="introduction">
-    <div class="container">
-      <p>Welcome to Qapture, the digital memory box that revolutionizes how you capture, share, and relive your most cherished moments. Whether it’s a wedding, birthday, or corporate event, Qapture ensures that every memory is preserved and shared effortlessly.</p>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="container">
-      <div class="feature">
-        <h2>Seamless Photo Sharing</h2>
-        <p>Effortlessly upload and share photos from your event with all attendees.</p>
-      </div>
-      <div class="feature">
-        <h2>Video Messages</h2>
-        <p>Collect heartfelt video messages from your guests, adding a personal touch to your memory box.</p>
-      </div>
-      <div class="feature">
-        <h2>Digital Memory Box</h2>
-        <p>Create a lasting digital keepsake that holds all your event’s memories in one place.</p>
-      </div>
-      <div class="feature">
-        <!-- Continue with other features -->
-      </div>
-    </div>
-  </section>
+    </script>
 </body>
 </html>

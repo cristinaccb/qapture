@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Qapture</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Capture Moments, Share Joy</h1>
+            <p>Your Digital Memory Box for Every Event</p>
+        </div>
+    </header>
+
+    <section class="introduction">
+        <div class="container">
+            <p>Welcome to Qapture, the digital memory box that revolutionizes how you capture, share, and relive your most cherished moments. Whether it’s a wedding, birthday, or corporate event, Qapture ensures that every memory is preserved and shared effortlessly.</p>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="feature">
+                <h2>Seamless Photo Sharing</h2>
+                <p>Effortlessly upload and share photos from your event with all attendees.</p>
+            </div>
+            <div class="feature">
+                <h2>Video Messages</h2>
+                <p>Collect heartfelt video messages from your guests, adding a personal touch to your memory box.</p>
+            </div>
+            <div class="feature">
+                <h2>Digital Memory Box</h2>
+                <p>Create a lasting digital keepsake that holds all your event’s memories in one place.</p>
+            </div>
+            <div class="feature">
+                <h2>Easy Access</h2>
+                <p>Access your memories anytime, anywhere via our intuitive web app.</p>
+            </div>
+            <div class="feature">
+                <h2>QR Code Invitations</h2>
+                <p>Simplify the process of inviting guests to contribute with unique QR codes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <ol>
+                <li>Create an Event: Set up your event in just a few clicks.</li>
+                <li>Invite Guests: Share your unique event QR code with guests to enable contributions.</li>
+                <li>Capture Memories: Guests can upload photos, videos, and messages during the event.</li>
+                <li>Enjoy and Share: Relive the event anytime with your beautifully organized digital memory box.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="visual-showcase">
+        <div class="container">
+            <h2>Gallery of Images/Videos</h2>
+            <div class="gallery">
+                <!-- Showcase images and videos here -->
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>Ready to capture and share your memories?</h2>
+            <p>Sign up now and start your first event with Qapture!</p>
+            <%= link_to 'Get Started', new_user_registration_path, class: 'button' %>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="contact-info">
+                <p>Email: support@qapture.com</p>
+                <div class="social-media">
+                    <%= link_to image_tag('facebook-icon.png', alt: 'Facebook'), '#' %>
+                    <%= link_to image_tag('instagram-icon.png', alt: 'Instagram'), '#' %>
+                    <%= link_to image_tag('twitter-icon.png', alt: 'Twitter'), '#' %>
+                </div>
+            </div>
+            <div class="links">
+                <%= link_to 'Home', root_path %>
+                <%= link_to 'FAQs', faqs_path %>
+                <%= link_to 'Privacy Policy', privacy_policy_path %>
+                <%= link_to 'Terms of Service', terms_of_service_path %>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+        }
+        .introduction, .features, .how-it-works, .visual-showcase, .call-to-action {
+            padding: 50px 0;
+            text-align: center;
+        }
+        .features .feature {
+            margin-bottom: 30px;
+        }
+        .features h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .how-it-works h2, .call-to-action h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .how-it-works ol {
+            list-style: decimal inside;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .visual-showcase .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .call-to-action p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .call-to-action .button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background: #333;
+            border: none;
+            text-decoration: none;
+        }
+        .footer {
+            background: #f8f8f8;
+            text-align: center;
+            padding: 20px 0;
+            color: #333;
+        }
+        .footer .contact-info {
+            margin-bottom: 20px;
+        }
+        .footer .social-media img {
+            width: 24px;
+            margin: 0 10px;
+        }
+        .footer .links a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Qapture</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>Capture Moments, Share Joy</h1>
+      <p>Your Digital Memory Box for Every Event</p>
+    </div>
+  </header>
+
+  <section class="introduction">
+    <div class="container">
+      <p>Welcome to Qapture, the digital memory box that revolutionizes how you capture, share, and relive your most cherished moments. Whether it’s a wedding, birthday, or corporate event, Qapture ensures that every memory is preserved and shared effortlessly.</p>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="feature">
+        <h2>Seamless Photo Sharing</h2>
+        <p>Effortlessly upload and share photos from your event with all attendees.</p>
+      </div>
+      <div class="feature">
+        <h2>Video Messages</h2>
+        <p>Collect heartfelt video messages from your guests, adding a personal touch to your memory box.</p>
+      </div>
+      <div class="feature">
+        <h2>Digital Memory Box</h2>
+        <p>Create a lasting digital keepsake that holds all your event’s memories in one place.</p>
+      </div>
+      <div class="feature">
+        <!-- Continue with other features -->
+      </div>
+    </div>
+  </section>
+</body>
+</html>

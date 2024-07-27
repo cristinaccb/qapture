@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :users do
     resources :uploads
   end
 
   resources :events do
     resources :uploads
-    resource :qr_code
+    resource :qr_code, only: [:show, :create]
   end
 
-  resources :uploads
-  resources :qr_codes
-
-  root 'events#index'
+  # Set the root route to the landing action in PagesController
+  root to: 'pages#landing'
 end
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

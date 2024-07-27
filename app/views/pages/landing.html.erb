@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts for styling -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Main CSS file link -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Defer loading JavaScript for performance -->
+    <script src="another-script.js" defer></script>
+    <script src="landing.js" defer></script>
+</head>
+<body>
+    <header>
+        <!-- Logo image, responsive with max width -->
+        <img id="logo" src="logo.png" alt="Qapture Logo" style="max-width: 200px;">
+        <!-- Visually hidden header for SEO -->
+        <h1 class="visually-hidden">Where moments are immortalized</h1>
+    </header>
+    <main>
+        <!-- Decorative confetti elements -->
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+
+
+<div class="buttons">
+    <a href="#" class="button">Learn More</a>
+    <a href="#" class="button">Scan Here</a>
+    <!-- Menu toggle button with an icon -->
+    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+</div>
+<div class="dropdown-menu">
+    <a href="/">Home</a>
+    <a href="/events">Events</a>
+    <a href="/signup">Sign Up</a>
+    <a href="/signin">Sign In</a>
+</div>
+
+
+
+        <!-- Email sign-up form -->
+        <section class="email-signup">
+            <label for="emailInput" class="visually-hidden">Enter your email here to:</label>
+            <input type="email" id="emailInput" placeholder="Capture Moments">
+            <button>Join Beta</button>
+        </section>
+    </main>
+    <nav>
+    <script>
+        // Ensure all scripts are contained and well-documented
+
+       document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    menuToggle.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('active');
+        }
+    });
+
+    const phrases = ["Capture Moments", "Share Experiences", "Relive Memories", "Join Our Community"];
+    let currentPhrase = 0;
+    let currentChar = 0;
+    let isDeleting = false;
+    let timer;
+
+    function cyclePhrases() {
+        const input = document.getElementById('emailInput');
+        if (!isDeleting && currentChar < phrases[currentPhrase].length) {
+            input.placeholder += phrases[currentPhrase].charAt(currentChar);
+            currentChar++;
+            timer = setTimeout(cyclePhrases, 250);
+        } else if (isDeleting) {
+            input.placeholder = input.placeholder.substring(0, input.placeholder.length - 1);
+            currentChar--;
+            timer = setTimeout(cyclePhrases, 100);
+        }
+
+        if (currentChar === 0 && isDeleting) {
+            isDeleting = false;
+            currentPhrase = (currentPhrase + 1) % phrases.length;
+            setTimeout(cyclePhrases, 200);
+        } else if (currentChar === phrases[currentPhrase].length && !isDeleting) {
+            isDeleting = true;
+            setTimeout(cyclePhrases, 2000);
+        }
+    }
+
+    cyclePhrases(); // Start the cycling of phrases
+
+    function createConfetti() {
+        const confettiCount = 20;
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            document.body.appendChild(confetti);
+        }
+    }
+
+    document.querySelector('.celebrate-button').addEventListener('click', createConfetti);
+});
+    </script>
+</body>
+</html>

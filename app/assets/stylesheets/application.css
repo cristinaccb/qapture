@@ -13,3 +13,38 @@
  *= require_tree .
  *= require_self
  */
+ @import "learn_more";
+
+ /* Sidebar with Glass Effect */
+.sidebar {
+  position: fixed; /* Fixed sidebar on the side of the page */
+  top: 0;
+  left: 0; /* Change to 'right: 0;' if you prefer it on the right */
+  width: 200px; /* Skinny sidebar */
+  height: 100%;
+  background: rgba(255, 255, 255, 0.75); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Learn More Button */
+.button-learn-more {
+  background-color: #4CAF50; /* Example green color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.button-learn-more:hover {
+  background-color: #45a049; /* Darker shade on hover */
+}

@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :events do
-    resources :uploads, only: [:create, :destroy]
+  resources :users do
+    resources :uploads
   end
-  resources :qr_codes, only: [:create, :destroy]
 
+  resources :events do
+    resources :uploads
+    resource :qr_code
+  end
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  resources :uploads
+  resources :qr_codes
 
+  root 'events#index'
 end
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

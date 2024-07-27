@@ -10,5 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_27_012636) do
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "qr_codes", force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.string "qrCodeUrl"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_qr_codes_on_event_id"
+  end
+
+  create_table "uploads", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.string "mediaType"
+    t.string "mediaUrl"
+    t.datetime "timestamp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_uploads_on_event_id"
+    t.index ["user_id"], name: "index_uploads_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "qr_codes", "events"
+  add_foreign_key "uploads", "events"
+  add_foreign_key "uploads", "users"
 end

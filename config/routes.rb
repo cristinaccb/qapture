@@ -13,12 +13,13 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :uploads
-    resource :qr_code, only: [:show, :create]
+    resource :qr_code, only: [:show]
   end
 
   # Route for Learn More page
   get 'learn_more', to: 'pages#learn_more'
 end
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,47 +1,22 @@
-class QrCodesController < ApplicationController
-  def index
-    @qr_codes = QrCode.all
-  end
+class QrCode < ApplicationRecord
+  belongs_to :event
 
-  def show
-    @qr_code = QrCode.find(params[:id])
-  end
-
-  def new
-    @qr_code = QrCode.new
-  end
-
-  def create
-    @qr_code = QrCode.new(qr_code_params)
-    if @qr_code.save
-      redirect_to @qr_code, notice: 'QrCode was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  def edit
-    @qr_code = QrCode.find(params[:id])
-  end
-
-  def update
-    @qr_code = QrCode.find(params[:id])
-    if @qr_code.update(qr_code_params)
-      redirect_to @qr_code, notice: 'QrCode was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @qr_code = QrCode.find(params[:id])
-    @qr_code.destroy
-    redirect_to qr_codes_url, notice: 'QrCode was successfully destroyed.'
-  end
+  before_create :generate_qr_code_data
 
   private
 
-  def qr_code_params
-    params.require(:qr_code).permit(:event_id, :qrCodeUrl)
+  def generate_qr_code_data
+    qr = RQRCode::QRCode.new(event_url(self.event))
+    self.qr_code_data = qr.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      module_size: 6,
+      standalone: true
+    ).html_safe
+  end
+
+  def event_url(event)
+    Rails.application.routes.url_helpers.event_url(event)
   end
 end

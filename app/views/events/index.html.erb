@@ -3,20 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qapture - Events</title>
+    <title>Qapture Mosaics</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="logo">Qapture</div>
-        <h1>Capture Moments, Share Memories</h1>
-        <p>Experience the joy of events through a seamless and beautiful interface.</p>
-        <div class="buttons">
-            <a href="/discover-events">Discover Events</a>
-            <a href="/join-event">Join Event</a>
-            <a href="/create-event">Create Event</a>
-            <a href="/my-events">My Events</a>
-            <a href="/contact">Contact Us</a>
-        </div>
+        <header>
+            <h1 class="logo"><a href="/">Qapture</a></h1>
+            <nav>
+                <a href="/My Uploads">Add Moment</a>
+                <a href="/All Events">My Events</a>
+                <a href="/Favorites">Favorites</a>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Your Event Mosaics</h2>
+            <div id="mosaic-gallery" class="mosaic-gallery">
+                <!-- Mosaic items will be injected here by JavaScript -->
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 Qapture. All rights reserved.</p>
+        </footer>
     </div>
+
+    <script src="mosaic.js"></script>
 </body>
 </html>

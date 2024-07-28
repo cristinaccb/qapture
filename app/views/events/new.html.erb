@@ -1,36 +1,52 @@
-<h1>New Event</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qapture - New Event</title>
+  <%= stylesheet_link_tag 'events', media: 'all' %>
+</head>
+<body>
+  <header>
+    <img id="logo" src="logo.png" alt="Qapture Logo">
+  </header>
+  <main>
+    <h1>New Event</h1>
 
-<%= form_with(model: @event, local: true) do |form| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+    <%= form_with(model: @event, local: true) do |form| %>
+      <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+            <% @event.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :date %>
-    <%= form.date_select :date %>
-  </div>
+      <div class="form-group">
+        <%= form.label :date %>
+        <%= form.date_select :date, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :location %>
-    <%= form.text_field :location %>
-  </div>
+      <div class="form-group">
+        <%= form.label :location %>
+        <%= form.text_field :location, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+      <div class="form-group">
+        <%= form.submit "Create Event and Generate QR Code", class: "btn btn-primary" %>
+      </div>
+    <% end %>
 
-<%= link_to 'Back', events_path %>
+    <%= link_to 'Back', events_path, class: 'button-back' %>
+  </main>
+</body>
+</html>

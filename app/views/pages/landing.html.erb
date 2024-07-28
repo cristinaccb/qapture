@@ -14,7 +14,8 @@
         <img id="logo" src="logo.png" alt="Qapture Logo">
         <nav class="buttons">
             <a href="/learn_more" class="button">Learn More</a>
-            <a href="#" class="button">Scan Here</a>
+            <a href="<%= new_event_path %>" class="button">Create New Event</a>
+            <a href="#" class="button">Scan QR</a>
         </nav>
     </header>
     <main>
@@ -36,11 +37,11 @@
             <div class="confetti"></div>
         </div>
     </main>
-<div class="dropdown-menu">
-    <a href="/events">Mosaics</a>
-    <a href="/users/sign_up">Sign Up</a>
-    <a href="/users/sign_in">Sign In</a>
-</div>
+    <div class="dropdown-menu">
+        <a href="/events">Mosaics</a>
+        <a href="/users/sign_up">Sign Up</a>
+        <a href="/users/sign_in">Sign In</a>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

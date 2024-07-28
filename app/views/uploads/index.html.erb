@@ -1,0 +1,11 @@
+<h1>Uploads for <%= @event.name %></h1>
+<%= link_to 'Capture New Moment', new_event_upload_path(@event) %>
+
+<% @uploads.each do |upload| %>
+  <div>
+    <h2><%= link_to upload.title, event_upload_path(@event, upload) %></h2>
+    <p><%= upload.description %></p>
+    <%= link_to 'Edit', edit_event_upload_path(@event, upload) %> |
+    <%= link_to 'Delete', event_upload_path(@event, upload), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+<% end %>

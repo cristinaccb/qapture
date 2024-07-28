@@ -1,0 +1,22 @@
+<h1>Capture New Moment</h1>
+
+<%= form_with(model: [@event, @upload], local: true) do |form| %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <%= form.submit 'Capture' %>
+<% end %>
+
+<%= link_to 'Back to Uploads', event_uploads_path(@event) %>

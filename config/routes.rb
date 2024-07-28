@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  # Set the root route to the landing action in PagesController
+  root 'pages#landing'
+
+  # Additional route for the home page
+  get 'home', to: 'pages#home'
+
   resources :users do
     resources :uploads
   end
@@ -10,13 +16,9 @@ Rails.application.routes.draw do
     resource :qr_code, only: [:show, :create]
   end
 
-  # Set the root route to the landing action in PagesController
-  root to: 'pages#landing'
-
   # Route for Learn More page
   get 'learn_more', to: 'pages#learn_more'
 end
-
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

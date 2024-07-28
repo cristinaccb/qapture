@@ -1,36 +1,22 @@
 class UploadsController < ApplicationController
-  before_action :set_user, only: [:index, :new, :create]
-  before_action :set_event, only: [:index, :new, :create]
+  before_action :set_event
   before_action :set_upload, only: [:show, :edit, :update, :destroy]
 
   def index
-    @uploads = if @user
-                 @user.uploads
-               elsif @event
-                 @event.uploads
-               else
-                 Upload.all
-               end
+    @uploads = @event.uploads
   end
 
   def show
   end
 
   def new
-    @upload = Upload.new
+    @upload = @event.uploads.build
   end
 
   def create
-    @upload = if @user
-                @user.uploads.build(upload_params)
-              elsif @event
-                @event.uploads.build(upload_params)
-              else
-                Upload.new(upload_params)
-              end
-
+    @upload = @event.uploads.build(upload_params)
     if @upload.save
-      redirect_to @upload, notice: 'Upload was successfully created.'
+      redirect_to event_upload_path(@event, @upload), notice: 'Upload was successfully created.'
     else
       render :new
     end
@@ -41,7 +27,7 @@ class UploadsController < ApplicationController
 
   def update
     if @upload.update(upload_params)
-      redirect_to @upload, notice: 'Upload was successfully updated.'
+      redirect_to event_upload_path(@event, @upload), notice: 'Upload was successfully updated.'
     else
       render :edit
     end
@@ -49,24 +35,20 @@ class UploadsController < ApplicationController
 
   def destroy
     @upload.destroy
-    redirect_to uploads_url, notice: 'Upload was successfully destroyed.'
+    redirect_to event_uploads_path(@event), notice: 'Upload was successfully destroyed.'
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:user_id]) if params[:user_id]
-  end
-
   def set_event
-    @event = Event.find(params[:event_id]) if params[:event_id]
+    @event = Event.find(params[:event_id])
   end
 
   def set_upload
-    @upload = Upload.find(params[:id])
+    @upload = @event.uploads.find(params[:id])
   end
 
   def upload_params
-    params.require(:upload).permit(:file, :description)
+    params.require(:upload).permit(:title, :description, :image)
   end
 end

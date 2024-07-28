@@ -1,0 +1,40 @@
+<h1>Welcome to Qapture</h1>
+
+<section>
+  <h2>Recent Events</h2>
+  <% if @recent_events.any? %>
+    <ul>
+      <% @recent_events.each do |event| %>
+        <li>
+          <%= link_to event.name, event_path(event) %>
+          (<%= event.uploads.count %> uploads)
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No events yet. <%= link_to 'Create your first event', new_event_path %>!</p>
+  <% end %>
+  <%= link_to 'View all events', events_path %>
+</section>
+
+<section>
+  <h2>Recent Uploads</h2>
+  <% if @recent_uploads.any? %>
+    <div class="uploads-grid">
+      <% @recent_uploads.each do |upload| %>
+        <div class="upload-card">
+          <%= image_tag upload.image.url if upload.image? %>
+          <h3><%= link_to upload.title, event_upload_path(upload.event, upload) %></h3>
+          <p>Event: <%= link_to upload.event.name, event_path(upload.event) %></p>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No uploads yet.</p>
+  <% end %>
+</section>
+
+<section>
+  <h2>Quick Actions</h2>
+  <%= link_to 'Create New Event', new_event_path, class: 'button' %>
+</section>

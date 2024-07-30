@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= @event.name %> - Event Details - Qapture</title>
-</head>
-<body>
   <h1><%= @event.name %></h1>
-  <p><%= @event.description %></p>
-
   <h2>Share This Event</h2>
   <div id="qr-code-container">
     <!-- Initially display QR code or placeholder if not yet generated -->
     <% if @event.qr_code.present? %>
-      <%= raw @event.qr_code.qr_code_data %>
+    <%= @qr_code_svg%>
     <% else %>
       <p>No QR code generated yet.</p>
     <% end %>
@@ -30,5 +20,3 @@
         .catch(error => console.error('Error generating QR code:', error));
     }
   </script>
-</body>
-</html>

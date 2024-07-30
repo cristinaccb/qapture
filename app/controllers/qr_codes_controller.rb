@@ -18,5 +18,6 @@ class QrCode < ApplicationRecord
 
   def event_url(event)
     Rails.application.routes.url_helpers.event_url(event)
+
   end
 end

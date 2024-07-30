@@ -6,6 +6,15 @@ class EventsController < ApplicationController
   end
 
   def show
+    @qr_code = @event.qr_code
+    qr = RQRCode::QRCode.new(@qr_code.qrCodeUrl)
+    @qr_code_svg = qr.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      module_size: 6,
+      standalone: true
+    ).html_safe
   end
 
   def new
@@ -44,6 +53,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :location)
+    params.require(:event).permit(:name, :date, :location, :host)
   end
 end

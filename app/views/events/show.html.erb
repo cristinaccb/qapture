@@ -1,22 +1,25 @@
 <% content_for :head do %>
+  <meta name="csrf-token" content="<%= csrf_meta_tags %>">
   <meta name="event-id" content="<%= @event.id %>">
 <% end %>
 
-<h1>Celebrate with <%= @event.name %></h1>
-<h2>Spread the Joy</h2>
-
+<h1><%= @event.name %></h1>
+<h2>Share This Event</h2>
 <div id="qr-code-container">
   <% if @event.qr_code.present? %>
-    <%= @qr_code_svg %>
-    <p>Ready to share this special moment? Use the QR code below!</p>
-    <!-- Display the options menu if a QR code is present -->
-    <div id="qr-options-menu">
-      <p>Choose an option to spread the word:</p>
-      <button onclick="printQRCode()" class="btn btn-secondary">Get Your Event QR Code</button>
-      <button onclick="shareQRCode()" class="btn btn-secondary">Share the Event Magic</button>
-    </div>
+	<%= @qr_code_svg %>
   <% else %>
-    <p>QR code not ready? Generate one and start sharing!</p>
-    <!-- Optionally, you can keep or remove this message depending on your needs -->
+	<p>No QR code generated yet.</p>
   <% end %>
 </div>
+
+<div id="qr-options-menu">
+  <% if @event.qr_code.present? %>
+	<button onclick="printQRCode()" class="btn btn-secondary">Print QR Code</button>
+	<button onclick="shareQRCode()" class="btn btn-secondary">Share QR Code</button>
+  <% end %>
+</div>
+
+<% share_options = { url: event_url(@event), allow_sites: %w(twitter facebook) } %>
+<% share_options[:desc] = @event.description if @event.respond_to?(:description) %>
+<%= social_share_button_tag('Share this event', share_options) %>

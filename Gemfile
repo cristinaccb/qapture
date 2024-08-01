@@ -71,3 +71,5 @@ end
 gem 'rqrcode'
 
 gem 'devise'
+
+gem 'social-share-button'

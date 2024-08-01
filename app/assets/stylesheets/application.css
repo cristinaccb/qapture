@@ -16,7 +16,8 @@
  /*
  *= require social-share-button
  */
- */
+
+ @import "rails-social-share-button";
  @import "learn_more";
 
  /* Sidebar with Glass Effect */
@@ -33,7 +34,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+/* Remove the empty ruleset for #qr-options-button */
+  /* Add your button styles here */
 
 /* Learn More Button */
 .button-learn-more {
@@ -53,9 +55,7 @@
   background-color: #45a049; /* Darker shade on hover */
 }
 
-#qr-code-container {
-  /* Add your styles for the QR code container */
-}
+/* Add your styles for the QR code container */
 
 #qr-options-menu {
   /* Add styles for the dropdown menu */
@@ -66,6 +66,15 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#qr-options-button {
-  /* Add your button styles here */
+:root {
+  --size: 24px;
+}
+
+.rails-social-share-button {
+  .ssb-icon {
+    background-size: var(--size) var(--size);
+    height: var(--size);
+    width: var(--size);
+  }
+ }
 }

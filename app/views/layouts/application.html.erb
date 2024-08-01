@@ -9,10 +9,9 @@
   <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
   <!-- Custom CSS for additional styling -->
-
 </head>
-<body>
 
+<body>
   <!-- Flash Messages -->
   <div class="container">
     <% if notice %>
@@ -31,5 +30,8 @@
   <!-- Include Bootstrap JS and Popper.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+  <!-- Include your custom JavaScript -->
+  <%= javascript_include_tag 'events', 'data-turbo-track': 'reload' %>
 </body>
 </html>

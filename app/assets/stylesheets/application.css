@@ -48,3 +48,20 @@
 .button-learn-more:hover {
   background-color: #45a049; /* Darker shade on hover */
 }
+
+#qr-code-container {
+  /* Add your styles for the QR code container */
+}
+
+#qr-options-menu {
+  /* Add styles for the dropdown menu */
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#qr-options-button {
+  /* Add your button styles here */
+}

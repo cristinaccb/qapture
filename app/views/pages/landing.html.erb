@@ -44,50 +44,53 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
 
-            menuToggle.addEventListener('click', () => {
-                dropdownMenu.classList.toggle('active');
-            });
+    menuToggle.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('active');
+    });
 
-            document.addEventListener('click', function(event) {
-                if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.remove('active');
+document.addEventListener('DOMContentLoaded', () => {
+    const phrases = ["Capture Moments", "Share Experiences", "Relive Memories", "Join Our Community"];
+    let currentPhrase = 0;
+    let currentChar = 0;
+    let isDeleting = false;
+    const input = document.getElementById('emailInput');
+
+    function cyclePhrases() {
+        if (input) {
+            const fullText = phrases[currentPhrase];
+            if (!isDeleting) {
+                // Add character by character
+                input.placeholder = fullText.substring(0, currentChar + 1);
+                currentChar++;
+                if (currentChar === fullText.length) {
+                    isDeleting = true;
+                    setTimeout(cyclePhrases, 2000); // Pause before deleting
+                } else {
+                    setTimeout(cyclePhrases, 150);
                 }
-            });
-
-            const phrases = ["Capture Moments", "Share Experiences", "Relive Memories", "Join Our Community"];
-            let currentPhrase = 0;
-            let currentChar = 0;
-            let isDeleting = false;
-
-            function cyclePhrases() {
-                const input = document.getElementById('emailInput');
-
-                if (input) {
-                    if (!isDeleting && currentChar < phrases[currentPhrase].length) {
-                        input.placeholder += phrases[currentPhrase].charAt(currentChar);
-                        currentChar++;
-                        setTimeout(cyclePhrases, 150);
-                    } else if (isDeleting && currentChar > 0) {
-                        input.placeholder = input.placeholder.substring(0, input.placeholder.length - 1);
-                        currentChar--;
-                        setTimeout(cyclePhrases, 100);
-                    } else if (currentChar === phrases[currentPhrase].length && !isDeleting) {
-                        isDeleting = true;
-                        setTimeout(cyclePhrases, 2000);
-                    } else if (currentChar === 0 && isDeleting) {
-                        isDeleting = false;
-                        currentPhrase = (currentPhrase + 1) % phrases.length;
-                        setTimeout(cyclePhrases, 500);
-                    }
+            } else {
+                // Delete character by character
+                input.placeholder = fullText.substring(0, currentChar);
+                currentChar--;
+                if (currentChar === 0) {
+                    isDeleting = false;
+                    currentPhrase = (currentPhrase + 1) % phrases.length; // Move to the next phrase
+                    setTimeout(cyclePhrases, 500); // Pause before typing the next phrase
+                } else {
+                    setTimeout(cyclePhrases, 100);
                 }
             }
+        }
+    }
 
-            cyclePhrases();
-        });
+    cyclePhrases(); // Start the cycle
+});
+
+});
     </script>
 </body>
 </html>

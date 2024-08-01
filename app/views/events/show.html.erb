@@ -1,22 +1,22 @@
-  <h1><%= @event.name %></h1>
-  <h2>Share This Event</h2>
-  <div id="qr-code-container">
-    <!-- Initially display QR code or placeholder if not yet generated -->
-    <% if @event.qr_code.present? %>
-    <%= @qr_code_svg%>
-    <% else %>
-      <p>No QR code generated yet.</p>
-    <% end %>
-  </div>
-  <button onclick="createOrUpdateQR()">Generate QR Code</button>
+<% content_for :head do %>
+  <meta name="event-id" content="<%= @event.id %>">
+<% end %>
 
-  <script>
-    function createOrUpdateQR() {
-      fetch('<%= event_qr_code_path(@event) %>', { method: 'GET' })
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('qr-code-container').innerHTML = data.qr_code;
-        })
-        .catch(error => console.error('Error generating QR code:', error));
-    }
-  </script>
+<h1>Celebrate with <%= @event.name %></h1>
+<h2>Spread the Joy</h2>
+
+<div id="qr-code-container">
+  <% if @event.qr_code.present? %>
+    <%= @qr_code_svg %>
+    <p>Ready to share this special moment? Use the QR code below!</p>
+    <!-- Display the options menu if a QR code is present -->
+    <div id="qr-options-menu">
+      <p>Choose an option to spread the word:</p>
+      <button onclick="printQRCode()" class="btn btn-secondary">Get Your Event QR Code</button>
+      <button onclick="shareQRCode()" class="btn btn-secondary">Share the Event Magic</button>
+    </div>
+  <% else %>
+    <p>QR code not ready? Generate one and start sharing!</p>
+    <!-- Optionally, you can keep or remove this message depending on your needs -->
+  <% end %>
+</div>

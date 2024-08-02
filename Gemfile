@@ -73,3 +73,5 @@ gem 'rqrcode'
 gem 'devise'
 
 gem 'social-share-button'
+
+gem 'carrierwave', '~> 2.0'

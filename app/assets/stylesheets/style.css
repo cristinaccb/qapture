@@ -5,6 +5,17 @@
   --background-color: #FFFFFF;
   --text-color: #000000;
 }
+body {
+  padding-top: 50px; /* Adjust this value based on your header height */
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
 
 * {
   margin: 0;
@@ -273,3 +284,63 @@ footer {
 }
 
 
+
+
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+  max-width: 300px; /* Ensure a max width for each card */
+  margin: 0 auto; /* Center cards within the grid */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+  text-align: center;
+}
+
+.card-content h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: #45a049;
+}

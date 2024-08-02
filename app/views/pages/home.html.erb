@@ -8,6 +8,10 @@
       <%= f.text_field :name, required: true, class: "form-control" %>
     </div>
     <div class="form-group">
+      <%= f.label :file, "Upload File (Text, Image, Video)" %>
+      <%= f.file_field :file, class: "form-control" %>
+    </div>
+    <div class="form-group">
       <%= f.submit 'Create Event', class: 'button' %>
     </div>
   <% end %>
@@ -19,8 +23,15 @@
     <div class="cards-grid">
       <% @recent_events.each do |event| %>
         <div class="card">
+          <div class="card-image">
+            <!-- Placeholder image, you can replace with event image -->
+            <%= image_tag 'placeholder.png', alt: event.name %>
+          </div>
           <div class="card-content">
             <h3><%= link_to event.name, event_path(event) %></h3>
+            <p>Date: <%= event.date.strftime("%B %d, %Y") %></p>
+            <p>Host: <%= event.host %></p>
+            <p>Location: <%= event.location %></p>
             <p><%= event.uploads.count %> uploads</p>
           </div>
         </div>
@@ -30,22 +41,6 @@
     <p>No events yet. <%= link_to 'Create your first event', new_event_path %>!</p>
   <% end %>
   <%= link_to 'View all events', events_path, class: 'button' %>
-
-  <%= form_for @event, url: events_path, html: { multipart: true } do |f| %>
-  <div class="form-group">
-    <%= f.label :name, "Event Name" %>
-    <%= f.text_field :name, required: true, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :file, "Upload File (Text, Image, Video)" %>
-    <%= f.file_field :file, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit 'Create Event', class: 'button' %>
-    
-  </div>
-<% end %>
-
 </section>
 
 <section>
@@ -72,4 +67,6 @@
 <section>
   <h2>Quick Actions</h2>
   <%= link_to 'Create New Event', new_event_path, class: 'button' %>
+  <%= link_to 'Back', :back, class: 'button' %>
 </section>
+

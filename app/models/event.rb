@@ -16,4 +16,8 @@ class Event < ApplicationRecord
   def generate_qr_code
     self.create_qr_code
   end
+
+  mount_uploader :file, FileUploader
+  # other associations and validations
 end
+

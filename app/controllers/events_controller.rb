@@ -15,6 +15,9 @@ class EventsController < ApplicationController
       module_size: 6,
       standalone: true
     ).html_safe
+
+    @upload = @event.uploads.build # Initializes a new Upload object linked to this event
+    @recent_events = Event.order(created_at: :desc).limit(5) # Add this line to provide recent events
   end
 
   def new
@@ -53,6 +56,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :location, :host)
+    params.require(:event).permit(:name, :date, :location, :host, :file) # Include :file here for upload functionality
   end
 end

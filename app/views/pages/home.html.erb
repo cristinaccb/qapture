@@ -1,20 +1,51 @@
 <h1>Welcome to Qapture</h1>
 
 <section>
+  <h2>Create a New Event</h2>
+  <%= form_for @event, url: events_path do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "Event Name" %>
+      <%= f.text_field :name, required: true, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Create Event', class: 'button' %>
+    </div>
+  <% end %>
+</section>
+
+<section>
   <h2>Recent Events</h2>
   <% if @recent_events.any? %>
-    <ul>
+    <div class="cards-grid">
       <% @recent_events.each do |event| %>
-        <li>
-          <%= link_to event.name, event_path(event) %>
-          (<%= event.uploads.count %> uploads)
-        </li>
+        <div class="card">
+          <div class="card-content">
+            <h3><%= link_to event.name, event_path(event) %></h3>
+            <p><%= event.uploads.count %> uploads</p>
+          </div>
+        </div>
       <% end %>
-    </ul>
+    </div>
   <% else %>
     <p>No events yet. <%= link_to 'Create your first event', new_event_path %>!</p>
   <% end %>
-  <%= link_to 'View all events', events_path %>
+  <%= link_to 'View all events', events_path, class: 'button' %>
+
+  <%= form_for @event, url: events_path, html: { multipart: true } do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "Event Name" %>
+    <%= f.text_field :name, required: true, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :file, "Upload File (Text, Image, Video)" %>
+    <%= f.file_field :file, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Create Event', class: 'button' %>
+    
+  </div>
+<% end %>
+
 </section>
 
 <section>
@@ -22,10 +53,14 @@
   <% if @recent_uploads.any? %>
     <div class="uploads-grid">
       <% @recent_uploads.each do |upload| %>
-        <div class="upload-card">
-          <%= image_tag upload.image.url if upload.image? %>
-          <h3><%= link_to upload.title, event_upload_path(upload.event, upload) %></h3>
-          <p>Event: <%= link_to upload.event.name, event_path(upload.event) %></p>
+        <div class="card">
+          <div class="card-image">
+            <%= image_tag upload.image.url if upload.image? %>
+          </div>
+          <div class="card-content">
+            <h3><%= link_to upload.title, event_upload_path(upload.event, upload) %></h3>
+            <p>Event: <%= link_to upload.event.name, event_path(upload.event) %></p>
+          </div>
         </div>
       <% end %>
     </div>

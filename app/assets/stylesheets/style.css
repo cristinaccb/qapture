@@ -5,17 +5,6 @@
   --background-color: #FFFFFF;
   --text-color: #000000;
 }
-body {
-  padding-top: 50px; /* Adjust this value based on your header height */
-}
-
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
 
 * {
   margin: 0;
@@ -30,11 +19,16 @@ body {
   font-size: 14px;
   line-height: 1.4;
   min-height: 100vh;
+  padding-top: 70px; /* Adjust this value based on your header height */
   display: flex;
   flex-direction: column;
 }
 
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -180,42 +174,6 @@ footer {
   margin-bottom: 10px;
 }
 
-
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-}
-
-.logo a {
-  text-decoration: none;
-  color: #333;
-  font-size: 24px;
-}
-
-nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: #555;
-}
-
-main {
-  margin-top: 20px;
-}
-
 .mosaic-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -231,7 +189,7 @@ main {
 
 .mosaic-item img {
   width: 100%;
-  height: auto;  /* Changed to auto for maintaining aspect ratio */
+  height: auto;  /* Maintain aspect ratio */
   object-fit: cover;
   transition: transform 0.5s ease;
 }
@@ -239,53 +197,6 @@ main {
 .mosaic-item:hover img {
   transform: scale(1.1);
 }
-
-footer {
-  text-align: center;
-  padding: 20px 0;
-  font-size: 14px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  header {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .logo, nav {
-      width: 100%;
-      text-align: center;
-      padding: 10px 0;
-  }
-
-  nav a {
-      display: block;  /* Stack nav items vertically on smaller screens */
-      margin: 5px 0;
-  }
-
-  .mosaic-gallery {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));  /* Smaller columns on mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .logo a {
-      font-size: 20px;  /* Smaller logo font on very small screens */
-  }
-
-  main {
-      margin-top: 10px;
-  }
-
-  .mosaic-item img {
-      height: 150px;  /* Smaller images on very small screens */
-  }
-}
-
-
-
-
 
 .cards-grid {
   display: grid;
@@ -300,8 +211,8 @@ footer {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s;
-  max-width: 300px; /* Ensure a max width for each card */
-  margin: 0 auto; /* Center cards within the grid */
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .card:hover {
@@ -343,4 +254,41 @@ footer {
 
 .button:hover {
   background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .logo, nav {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+  }
+
+  nav a {
+      display: block;  /* Stack nav items vertically on smaller screens */
+      margin: 5px 0;
+  }
+
+  .mosaic-gallery {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));  /* Smaller columns on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo a {
+      font-size: 20px;  /* Smaller logo font on very small screens */
+  }
+
+  main {
+      margin-top: 10px;
+  }
+
+  .mosaic-item img {
+      height: 150px;  /* Smaller images on very small screens */
+  }
 }

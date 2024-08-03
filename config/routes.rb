@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   # Route for Learn More page
   get 'learn_more', to: 'pages#learn_more'
+  
 end
 
 

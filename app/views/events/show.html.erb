@@ -7,6 +7,23 @@
       <%= f.label :file, "Upload File (Text, Image, Video)" %>
       <%= f.file_field :file, class: "form-control" %>
     </div>
+
+    <!-- Capture Section -->
+    <div id="capture-section">
+      <h3>Or Take Photo/Video</h3>
+      <video id="video" width="640" height="480" autoplay></video>
+      <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+      <video id="recordedVideo" controls style="display: none;"></video>
+
+      <button type="button" id="snap" class="button">Take Photo</button>
+      <button type="button" id="startRecording" class="button">Start Recording</button>
+      <button type="button" id="stopRecording" class="button" style="display: none;">Stop Recording</button>
+
+      <!-- Hidden fields to store captured media -->
+      <input type="hidden" id="media_data" name="upload[media_data]">
+      <input type="hidden" id="media_type" name="upload[media_type]">
+    </div>
+
     <div class="form-group">
       <%= f.submit 'Upload File', class: 'button' %>
     </div>
@@ -54,3 +71,66 @@
     <%= submit_tag 'Delete Event', class: 'button delete-button' %>
   <% end %>
 </section>
+
+<script>
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  const snap = document.getElementById('snap');
+  const startRecording = document.getElementById('startRecording');
+  const stopRecording = document.getElementById('stopRecording');
+  const recordedVideo = document.getElementById('recordedVideo');
+  const mediaDataInput = document.getElementById('media_data');
+  const mediaTypeInput = document.getElementById('media_type');
+
+  let mediaRecorder;
+  let recordedChunks = [];
+
+  // Request access to the camera
+  navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+    .then(stream => {
+      video.srcObject = stream;
+
+      mediaRecorder = new MediaRecorder(stream);
+
+      mediaRecorder.ondataavailable = function(event) {
+        if (event.data.size > 0) {
+          recordedChunks.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = function() {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function() {
+          const base64data = reader.result;
+          mediaDataInput.value = base64data;
+          mediaTypeInput.value = 'video/webm';
+        }
+        recordedVideo.src = URL.createObjectURL(blob);
+        recordedVideo.style.display = 'block';
+        stopRecording.style.display = 'none';
+        startRecording.style.display = 'inline-block';
+      };
+    });
+
+  snap.addEventListener('click', () => {
+    context.drawImage(video, 0, 0, 640, 480);
+    const dataURL = canvas.toDataURL('image/png');
+    canvas.style.display = 'block';
+    mediaDataInput.value = dataURL;
+    mediaTypeInput.value = 'image/png';
+  });
+
+  startRecording.addEventListener('click', () => {
+    recordedChunks = [];
+    mediaRecorder.start();
+    startRecording.style.display = 'none';
+    stopRecording.style.display = 'inline-block';
+  });
+
+  stopRecording.addEventListener('click', () => {
+    mediaRecorder.stop();
+  });
+</script>

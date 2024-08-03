@@ -15,12 +15,12 @@ Rails.application.routes.draw do
     resources :uploads
     resource :qr_code, only: [:show]
     resources :events, only: [:create, :show, :destroy]
-
+    post 'download_selected', on: :member
   end
 
   # Route for Learn More page
   get 'learn_more', to: 'pages#learn_more'
-  
+
 end
 
 

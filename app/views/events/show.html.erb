@@ -1,142 +1,27 @@
-<h1><%= @event.name %></h1>
+<% content_for :head do %>
+  <meta name="csrf-token" content="<%= csrf_meta_tags %>">
+  <meta name="event-id" content="<%= @event.id %>">
+  <style>
+    /* Include the CSS here or link to your stylesheet */
+  </style>
+<% end %>
 
-<section>
-  <h2>Upload Files to This Event</h2>
-  <%= form_for @upload, url: event_uploads_path(@event), html: { multipart: true } do |f| %>
-    <div class="form-group">
-      <%= f.label :file, "Upload File (Text, Image, Video)" %>
-      <%= f.file_field :file, class: "form-control" %>
-    </div>
+<div class="event-page-container">
+  <h1 class="event-name"><%= @event.name %></h1>
+  <h2 class="invite-heading">Invite Your Guests</h2>
+  <p class="invite-message">Make sure your guests don’t miss out on capturing memories! Share this event with them.</p>
 
-    <!-- Capture Section -->
-    <div id="capture-section">
-      <h3>Or Take Photo/Video</h3>
-      <video id="video" width="640" height="480" autoplay></video>
-      <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
-      <video id="recordedVideo" controls style="display: none;"></video>
+  <div id="qr-code-container" class="qr-code-container">
+    <% if @event.qr_code.present? %>
+      <%= @qr_code_svg %>
+    <% else %>
+      <p class="no-qr-message">No QR code generated yet. Create one to easily share this event.</p>
+    <% end %>
+  </div>
 
-      <button type="button" id="snap" class="button">Take Photo</button>
-      <button type="button" id="startRecording" class="button">Start Recording</button>
-      <button type="button" id="stopRecording" class="button" style="display: none;">Stop Recording</button>
-
-      <!-- Hidden fields to store captured media -->
-      <input type="hidden" id="media_data" name="upload[media_data]">
-      <input type="hidden" id="media_type" name="upload[media_type]">
-    </div>
-
-    <div class="form-group">
-      <%= f.submit 'Upload File', class: 'button' %>
-    </div>
-  <% end %>
-</section>
-
-<section>
-  <h2>Uploads for <%= @event.name %></h2>
-  <% if @event.uploads.any? %>
-    <div class="uploads-grid">
-      <%= form_tag download_selected_event_path(@event), method: :post do %>
-        <% @event.uploads.each do |upload| %>
-          <div class="card">
-            <div class="card-image">
-              <%= check_box_tag "selected_uploads[]", upload.id %>
-              <% if upload.mediaType.present? && upload.mediaType.include?("image") %>
-                <%= image_tag upload.mediaUrl if upload.mediaUrl.present? %>
-              <% elsif upload.mediaType.present? && upload.mediaType.include?("video") %>
-                <video controls>
-                  <source src="<%= upload.mediaUrl %>" type="<%= upload.mediaType %>">
-                  Your browser does not support the video tag.
-                </video>
-              <% else %>
-                <p>File cannot be previewed.</p>
-              <% end %>
-            </div>
-            <div class="card-content">
-              <% if upload.persisted? %>
-                <h3><%= link_to "View Upload", event_upload_path(@event, upload) %></h3>
-              <% else %>
-                <p>File has not been saved yet.</p>
-              <% end %>
-              <p>Uploaded on: <%= upload.created_at.strftime("%B %d, %Y") if upload.created_at %></p>
-            </div>
-          </div>
-        <% end %>
-        <div class="form-group">
-          <%= submit_tag 'Download Selected', class: 'button download-button' %>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-    <p>No uploads yet.</p>
-  <% end %>
-</section>
-
-<section>
-  <%= link_to 'Back to Events', events_path, class: 'button' %>
-
-  <%= form_for @event, url: event_path(@event), method: :delete, data: { confirm: 'Are you sure you want to delete this event?' }, class: 'delete-form' do %>
-    <%= submit_tag 'Delete Event', class: 'button delete-button' %>
-  <% end %>
-</section>
-
-<script>
-  const video = document.getElementById('video');
-  const canvas = document.getElementById('canvas');
-  const context = canvas.getContext('2d');
-  const snap = document.getElementById('snap');
-  const startRecording = document.getElementById('startRecording');
-  const stopRecording = document.getElementById('stopRecording');
-  const recordedVideo = document.getElementById('recordedVideo');
-  const mediaDataInput = document.getElementById('media_data');
-  const mediaTypeInput = document.getElementById('media_type');
-
-  let mediaRecorder;
-  let recordedChunks = [];
-
-  // Request access to the camera
-  navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-    .then(stream => {
-      video.srcObject = stream;
-
-      mediaRecorder = new MediaRecorder(stream);
-
-      mediaRecorder.ondataavailable = function(event) {
-        if (event.data.size > 0) {
-          recordedChunks.push(event.data);
-        }
-      };
-
-      mediaRecorder.onstop = function() {
-        const blob = new Blob(recordedChunks, { type: 'video/webm' });
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function() {
-          const base64data = reader.result;
-          mediaDataInput.value = base64data;
-          mediaTypeInput.value = 'video/webm';
-        }
-        recordedVideo.src = URL.createObjectURL(blob);
-        recordedVideo.style.display = 'block';
-        stopRecording.style.display = 'none';
-        startRecording.style.display = 'inline-block';
-      };
-    });
-
-  snap.addEventListener('click', () => {
-    context.drawImage(video, 0, 0, 640, 480);
-    const dataURL = canvas.toDataURL('image/png');
-    canvas.style.display = 'block';
-    mediaDataInput.value = dataURL;
-    mediaTypeInput.value = 'image/png';
-  });
-
-  startRecording.addEventListener('click', () => {
-    recordedChunks = [];
-    mediaRecorder.start();
-    startRecording.style.display = 'none';
-    stopRecording.style.display = 'inline-block';
-  });
-
-  stopRecording.addEventListener('click', () => {
-    mediaRecorder.stop();
-  });
-</script>
+  <div id="qr-options-menu" class="qr-options-menu">
+    <% if @event.qr_code.present? %>
+      <button onclick="printQRCode()" class="btn btn-secondary print-btn">Print QR Code</button>
+    <% end %>
+  </div>
+</div>

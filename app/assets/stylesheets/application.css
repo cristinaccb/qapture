@@ -21,60 +21,80 @@
  @import "learn_more";
 
  /* Sidebar with Glass Effect */
-.sidebar {
-  position: fixed; /* Fixed sidebar on the side of the page */
-  top: 0;
-  left: 0; /* Change to 'right: 0;' if you prefer it on the right */
-  width: 200px; /* Skinny sidebar */
-  height: 100%;
-  background: rgba(255, 255, 255, 0.75); /* Semi-transparent white */
-  backdrop-filter: blur(10px); /* Frosted glass effect */
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-/* Remove the empty ruleset for #qr-options-button */
-  /* Add your button styles here */
-
-/* Learn More Button */
-.button-learn-more {
-  background-color: #4CAF50; /* Example green color */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.button-learn-more:hover {
-  background-color: #45a049; /* Darker shade on hover */
-}
-
-/* Add your styles for the QR code container */
-
-#qr-options-menu {
-  /* Add styles for the dropdown menu */
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-:root {
-  --size: 24px;
-}
-
-.rails-social-share-button {
-  .ssb-icon {
-    background-size: var(--size) var(--size);
-    height: var(--size);
-    width: var(--size);
-  }
+ .sidebar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 250px; /* Slightly wider for more content */
+   height: 100%;
+   background: rgba(255, 255, 255, 0.75);
+   backdrop-filter: blur(15px); /* Increased blur for stronger glass effect */
+   padding: 30px 20px; /* More padding for a spacious look */
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start; /* Align content to start */
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+   transition: all 0.3s ease; /* Smooth transition for interactive elements */
  }
-}
+
+ .sidebar:hover {
+   backdrop-filter: blur(20px); /* Enhance the blur on hover */
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* Enhance the shadow on hover */
+ }
+
+ /* Learn More Button */
+ .button-learn-more {
+   background: linear-gradient(45deg, #4CAF50, #66BB6A); /* Gradient for a modern look */
+   color: white;
+   border: none;
+   border-radius: 30px; /* Rounded corners */
+   padding: 12px 25px; /* Slightly larger padding for a more modern feel */
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 18px; /* Slightly larger font size */
+   font-weight: bold;
+   transition: all 0.3s ease;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+ }
+
+ .button-learn-more:hover {
+   background-color: #45a049; /* Slightly darker shade on hover */
+   transform: translateY(-3px); /* Lift on hover for interactivity */
+   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+ }
+
+ /* QR Options Menu */
+ #qr-options-menu {
+   position: absolute;
+   background-color: white;
+   border: 1px solid #ccc;
+   padding: 15px; /* Increased padding for better readability */
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+   border-radius: 10px; /* Rounded corners for a modern look */
+   z-index: 1000; /* Ensure it appears above other elements */
+   transition: all 0.3s ease;
+ }
+
+ #qr-options-menu:hover {
+   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+ }
+
+ /* Social Share Button Styling */
+ :root {
+   --size: 24px;
+ }
+
+ .rails-social-share-button {
+   .ssb-icon {
+     background-size: var(--size) var(--size);
+     height: var(--size);
+     width: var(--size);
+     transition: transform 0.3s ease; /* Smooth transition on hover */
+   }
+
+   .ssb-icon:hover {
+     transform: scale(1.1); /* Slight scaling effect on hover */
+   }
+ }

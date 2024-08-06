@@ -1,0 +1,41 @@
+<% content_for :head do %>
+  <meta name="csrf-token" content="<%= csrf_meta_tags %>">
+  <meta name="event-id" content="<%= @event.id %>">
+  <%= stylesheet_link_tag 'event_progress_bar', media: 'all' %>
+<% end %>
+
+<div class="event-page-container">
+  <h1 class="event-name"><%= @event.name %></h1>
+  <h2 class="invite-heading">Invite Your Guests</h2>
+  <p class="invite-message">Make sure your guests don’t miss out on capturing memories! Share this event with them.</p>
+
+  <!-- Progress Bar -->
+  <ul class="progress-bar">
+    <li class="step active">
+      <div class="step-icon">1</div>
+      <p>Details</p>
+    </li>
+    <li class="step">
+      <div class="step-icon">2</div>
+      <p>QR</p>
+    </li>
+    <li class="step">
+      <div class="step-icon">3</div>
+      <p>Share QR</p>
+    </li>
+  </ul>
+
+  <div id="qr-code-container" class="qr-code-container">
+    <% if @event.qr_code.present? %>
+      <%= @qr_code_svg %>
+    <% else %>
+      <p class="no-qr-message">No QR code generated yet. Create one to easily share this event.</p>
+    <% end %>
+  </div>
+
+  <div id="qr-options-menu" class="qr-options-menu">
+    <% if @event.qr_code.present? %>
+      <button onclick="printQRCode()" class="btn btn-secondary print-btn">Print QR Code</button>
+    <% end %>
+  </div>
+</div>

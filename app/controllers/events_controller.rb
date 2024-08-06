@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  require 'zip'
+
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :qr_code]
 
   def index
     @events = Event.all
@@ -52,6 +54,42 @@ class EventsController < ApplicationController
     end
   end
 
+  def qr_code
+      @qr_code = @event.qr_code
+      qr = RQRCode::QRCode.new(@qr_code.qrCodeUrl)
+      @qr_code_svg = qr.as_svg(
+        offset: 0,
+        color: '000',
+        shape_rendering: 'crispEdges',
+        module_size: 6,
+        standalone: true
+      ).html_safe
+  end
+
+  def download_selected
+    @event = Event.find(params[:event_id])
+    selected_uploads = Upload.where(id: params[:selected_uploads])
+
+    zip_file = package_uploads_as_zip(selected_uploads)
+
+    send_file(zip_file, type: 'application/zip', disposition: 'attachment')
+  end
+
+  private
+
+  def package_uploads_as_zip(uploads)
+    temp_file = Tempfile.new("uploads-#{Time.now.to_i}.zip")
+    Zip::File.open(temp_file.path, Zip::File::CREATE) do |zipfile|
+      uploads.each do |upload|
+        file_path = upload.file.path # Assuming you have a file path stored in upload.file
+        zipfile.add(File.basename(file_path), file_path) if File.exist?(file_path)
+      end
+    end
+    temp_file.path
+  ensure
+    temp_file.close
+  end
+
 
   private
 
@@ -62,35 +100,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :date, :location, :host, :file) # Include :file here for upload functionality
   end
-
-  require 'zip'
-
-  class EventsController < ApplicationController
-    # Other actions...
-
-    def download_selected
-      @event = Event.find(params[:event_id])
-      selected_uploads = Upload.where(id: params[:selected_uploads])
-
-      zip_file = package_uploads_as_zip(selected_uploads)
-
-      send_file(zip_file, type: 'application/zip', disposition: 'attachment')
-    end
-
-    private
-
-    def package_uploads_as_zip(uploads)
-      temp_file = Tempfile.new("uploads-#{Time.now.to_i}.zip")
-      Zip::File.open(temp_file.path, Zip::File::CREATE) do |zipfile|
-        uploads.each do |upload|
-          file_path = upload.file.path # Assuming you have a file path stored in upload.file
-          zipfile.add(File.basename(file_path), file_path) if File.exist?(file_path)
-        end
-      end
-      temp_file.path
-    ensure
-      temp_file.close
-    end
-  end
-
 end

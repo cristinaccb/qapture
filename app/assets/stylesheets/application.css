@@ -17,8 +17,9 @@
  *= require social-share-button
  */
 
- @import "rails-social-share-button";
- @import "learn_more";
+@import "learn_more";
+@import "event_progress_bar";
+@import "style";
 
  /* Sidebar with Glass Effect */
  .sidebar {

@@ -2,100 +2,79 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
  *= require_tree .
  *= require_self
 
- /*
- *= require social-share-button
- */
 
-@import "learn_more";
-@import "event_progress_bar";
-@import "style";
+ @import "learn_more";
+ @import "event_progress_bar";
+ @import "style";
 
- /* Sidebar with Glass Effect */
- .sidebar {
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 250px; /* Slightly wider for more content */
-   height: 100%;
-   background: rgba(255, 255, 255, 0.75);
-   backdrop-filter: blur(15px); /* Increased blur for stronger glass effect */
-   padding: 30px 20px; /* More padding for a spacious look */
-   box-sizing: border-box;
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start; /* Align content to start */
-   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
-   transition: all 0.3s ease; /* Smooth transition for interactive elements */
- }
-
- .sidebar:hover {
-   backdrop-filter: blur(20px); /* Enhance the blur on hover */
-   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* Enhance the shadow on hover */
- }
-
- /* Learn More Button */
+ /* Additional Styles */
  .button-learn-more {
-   background: linear-gradient(45deg, #4CAF50, #66BB6A); /* Gradient for a modern look */
+   background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
    color: white;
    border: none;
-   border-radius: 30px; /* Rounded corners */
-   padding: 12px 25px; /* Slightly larger padding for a more modern feel */
+   border-radius: 30px;
+   padding: 12px 25px;
    text-align: center;
    text-decoration: none;
    display: inline-block;
-   font-size: 18px; /* Slightly larger font size */
+   font-size: 18px;
    font-weight: bold;
    transition: all 0.3s ease;
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+   box-shadow: var(--card-shadow);
  }
 
  .button-learn-more:hover {
-   background-color: #45a049; /* Slightly darker shade on hover */
-   transform: translateY(-3px); /* Lift on hover for interactivity */
-   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+   background-color: #45a049;
+   transform: translateY(-3px);
+   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
  }
 
- /* QR Options Menu */
  #qr-options-menu {
-   position: absolute;
    background-color: white;
    border: 1px solid #ccc;
-   padding: 15px; /* Increased padding for better readability */
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-   border-radius: 10px; /* Rounded corners for a modern look */
-   z-index: 1000; /* Ensure it appears above other elements */
+   padding: 15px;
+   box-shadow: var(--card-shadow);
+   border-radius: 10px;
+   z-index: 1000;
    transition: all 0.3s ease;
  }
 
  #qr-options-menu:hover {
-   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
  }
 
- /* Social Share Button Styling */
- :root {
-   --size: 24px;
+ .rails-social-share-button .ssb-icon {
+   background-size: var(--size) var(--size);
+   height: var(--size);
+   width: var(--size);
+   transition: transform 0.3s ease;
  }
 
- .rails-social-share-button {
-   .ssb-icon {
-     background-size: var(--size) var(--size);
-     height: var(--size);
-     width: var(--size);
-     transition: transform 0.3s ease; /* Smooth transition on hover */
-   }
+ .rails-social-share-button .ssb-icon:hover {
+   transform: scale(1.1);
+ }
 
-   .ssb-icon:hover {
-     transform: scale(1.1); /* Slight scaling effect on hover */
-   }
+ .sidebar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 250px;
+   height: 100%;
+   background: rgba(255, 255, 255, 0.75);
+   backdrop-filter: blur(15px);
+   padding: 30px 20px;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   box-shadow: var(--card-shadow);
+   transition: all 0.3s ease;
+ }
+
+ .sidebar:hover {
+   backdrop-filter: blur(20px);
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
  }

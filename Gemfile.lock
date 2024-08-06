@@ -319,6 +319,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.4)
   rqrcode
+  rubyzip (~> 2.3)
   selenium-webdriver
   social-share-button
   sprockets-rails

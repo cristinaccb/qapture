@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_02_052449) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_06_085515) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.datetime "date"
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_02_052449) do
     t.datetime "updated_at", null: false
     t.string "host"
     t.string "file"
+    t.text "description"
   end
 
   create_table "qr_codes", force: :cascade do |t|
@@ -26,6 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_02_052449) do
     t.string "qrCodeUrl"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "qr_code_data"
     t.index ["event_id"], name: "index_qr_codes_on_event_id"
   end
 

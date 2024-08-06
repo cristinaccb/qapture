@@ -13,7 +13,10 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :uploads
-    resource :qr_code, only: [:show]
+    # resources :qr_code, only: [:show]
+    member do
+      get 'qr_code'
+    end
     resources :events, only: [:create, :show, :destroy]
     post 'download_selected', on: :member
   end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'messages/create'
   devise_for :users
 
   # Set the root route to the landing action in PagesController
@@ -19,11 +20,11 @@ Rails.application.routes.draw do
     end
     resources :events, only: [:create, :show, :destroy]
     post 'download_selected', on: :member
+    resources :messages, only: [:create, :index]
   end
 
   # Route for Learn More page
   get 'learn_more', to: 'pages#learn_more'
-
 end
 
 

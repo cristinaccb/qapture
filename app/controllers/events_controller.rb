@@ -17,9 +17,9 @@ class EventsController < ApplicationController
       module_size: 6,
       standalone: true
     ).html_safe
-
     @upload = @event.uploads.build # Initializes a new Upload object linked to this event
     @recent_events = Event.order(created_at: :desc).limit(5) # Add this line to provide recent events
+    @message = @event.messages # Fetch associated messages
   end
 
   def new

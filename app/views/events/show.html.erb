@@ -64,6 +64,31 @@
   <% end %>
 </section>
 
+<h3>Leave a Message</h3>
+
+<%= form_with(model: [@event, @event.messages.build], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :content, "Your Message" %>
+    <%= form.text_area :content, rows: 4 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Post Message" %>
+  </div>
+<% end %>
+
+<% if @event.messages.any? %>
+  <h3>Messages</h3>
+  <ul>
+    <% @event.messages.each do |message| %>
+      <li>
+        <strong><%= message.user.present? ? message.user.name : "Anonymous" %>:</strong>
+        <%= message.content %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <section>
   <h2>Uploads for <%= @event.name %></h2>
   <% if @event.uploads.any? %>

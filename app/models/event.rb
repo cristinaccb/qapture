@@ -2,12 +2,12 @@ class Event < ApplicationRecord
   has_many :uploads
   has_many :users, through: :uploads
   has_one :qr_code, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   validates :name, presence: true
   validates :date, presence: true
   validates :location, presence: true
   validates :host, presence: true
-
 
   after_create :generate_qr_code
 
@@ -20,4 +20,3 @@ class Event < ApplicationRecord
   mount_uploader :file, FileUploader
   # other associations and validations
 end
-

@@ -124,3 +124,16 @@ footer {
     width: 50%; /* Adjusts image size for smaller screens */
   }
 }
+
+.sign-out-button {
+  margin-left: 20px;
+  background-color: #ff4b4b; /* Red color for sign-out to indicate action */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.sign-out-button:hover {
+  background-color: #ff0000;
+}

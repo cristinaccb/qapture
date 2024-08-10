@@ -1,35 +1,67 @@
 <div class="event-page-container">
   <h1 class="event-name"><%= @event.name %></h1>
   <h2 class="invite-heading">Invite Your Guests</h2>
-  <p class="invite-message">Make sure your guests don’t miss out on capturing memories! Share this event with them.</p>
+  <p class="invite-message">Ensure your guests don’t miss a moment! Share this event and capture memories together.</p>
 
   <!-- Progress Bar -->
   <ul class="progress-bar">
     <li class="step active">
       <div class="step-icon">1</div>
-      <p>Details</p>
+      <p>Event Details</p>
     </li>
     <li class="step">
       <div class="step-icon">2</div>
-      <p>QR</p>
+      <p>Create QR Code</p>
     </li>
     <li class="step">
       <div class="step-icon">3</div>
-      <p>Share QR</p>
+      <p>Share with Guests</p>
     </li>
   </ul>
 
+  <!-- QR Code Section -->
   <div id="qr-code-container" class="qr-code-container">
     <% if @event.qr_code.present? %>
-      <%= @qr_code_svg %>
+      <div class="qr-code-wrapper" onclick="showQRCodeModal()">
+        <%= @qr_code_svg %>
+        <p class="qr-code-caption">Click to enlarge QR code</p>
+      </div>
     <% else %>
-      <p class="no-qr-message">No QR code generated yet. Create one to easily share this event.</p>
+      <p class="no-qr-message">No QR code generated yet. Create one to easily share this event with your guests.</p>
     <% end %>
   </div>
 
+  <!-- QR Code Options Menu -->
   <div id="qr-options-menu" class="qr-options-menu">
     <% if @event.qr_code.present? %>
       <button onclick="printQRCode()" class="btn btn-secondary print-btn">Print QR Code</button>
+      <button onclick="downloadQRCode()" class="btn btn-primary download-btn">Download QR Code</button>
     <% end %>
   </div>
 </div>
+
+<!-- Modal for Full Screen QR Code -->
+<div id="qr-code-modal" class="qr-code-modal" style="display: none;">
+  <div class="qr-code-modal-content">
+    <span class="close-btn" onclick="closeQRCodeModal()">&times;</span>
+    <%= @qr_code_svg %>
+  </div>
+</div>
+
+<script>
+  function showQRCodeModal() {
+    document.getElementById('qr-code-modal').style.display = 'block';
+  }
+
+  function closeQRCodeModal() {
+    document.getElementById('qr-code-modal').style.display = 'none';
+  }
+
+  function printQRCode() {
+    window.print();
+  }
+
+  function downloadQRCode() {
+    // Add functionality to download the QR code image.
+  }
+</script>

@@ -78,7 +78,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_005834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
-    t.string "file"
     t.index ["event_id"], name: "index_uploads_on_event_id"
     t.index ["user_id"], name: "index_uploads_on_user_id"
   end

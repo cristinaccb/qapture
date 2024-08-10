@@ -1,4 +1,9 @@
-<h1>Welcome to Qapture</h1>
+<header>
+  <h1>Welcome to Qapture</h1>
+  <% if user_signed_in? %>
+<%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+  <% end %>
+</header>
 
 <section>
   <h2>Create a New Event</h2>
@@ -69,4 +74,3 @@
   <%= link_to 'Create New Event', new_event_path, class: 'button' %>
   <%= link_to 'Back', :back, class: 'button' %>
 </section>
-

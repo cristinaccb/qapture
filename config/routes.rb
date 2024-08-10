@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'messages/create'
   devise_for :users
   root 'pages#landing'
   get 'home', to: 'pages#home'
@@ -13,6 +14,10 @@ Rails.application.routes.draw do
       get 'qr_code'
       post 'download_selected'
     end
+
+    resources :events, only: [:create, :show, :destroy]
+    post 'download_selected', on: :member
+    resources :messages, only: [:create, :index]
   end
 
   get 'learn_more', to: 'pages#learn_more'

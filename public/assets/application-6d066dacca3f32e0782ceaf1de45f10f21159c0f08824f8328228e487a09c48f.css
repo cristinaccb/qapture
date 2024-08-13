@@ -1,0 +1,275 @@
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  text-align: center;
+  width: 33%;
+  position: relative;
+}
+
+.step-icon {
+  background-color: #ddd;
+  color: #333;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 30px;
+  font-weight: bold;
+}
+
+.step p {
+  margin-top: 10px;
+  color: #333;
+}
+
+.step.active .step-icon {
+  background-color: #007bff;
+  color: white;
+}
+
+.step::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #ddd;
+  top: 15px;
+  left: -50%;
+  z-index: -1;
+}
+
+.step:first-child::before {
+  content: none;
+}
+
+.step.active::before,
+.step.active::after {
+  background-color: #007bff;
+}
+
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #ddd;
+  top: 15px;
+  right: -50%;
+  z-index: -1;
+}
+
+.step.active + .step::before {
+  background-color: #007bff;
+}
+:root {
+  --primary-color: #333;
+  --secondary-color: #fff;
+  --accent-color: #007aff;
+  --background-color: #f5f5f5;
+  --text-color: #444;
+  --font-family: 'Arial', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+main {
+  padding: 40px 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+/* Image Styles */
+img {
+  max-width: 100%; /* Ensures the image is responsive */
+  height: auto; /* Maintains aspect ratio */
+  width: 50%; /* Sets the image width to 50% of its container */
+  margin: 0 auto; /* Centers the image */
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  padding: 12px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  img {
+    width: 80%; /* Adjusts image size for smaller screens */
+  }
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+
+
+
+
+ @import "learn_more";
+ @import "event_progress_bar";
+ @import "style";
+
+ /* Additional Styles */
+ .button-learn-more {
+   background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+   color: white;
+   border: none;
+   border-radius: 30px;
+   padding: 12px 25px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 18px;
+   font-weight: bold;
+   transition: all 0.3s ease;
+   box-shadow: var(--card-shadow);
+ }
+
+ .button-learn-more:hover {
+   background-color: #45a049;
+   transform: translateY(-3px);
+   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+ }
+
+ #qr-options-menu {
+   background-color: white;
+   border: 1px solid #ccc;
+   padding: 15px;
+   box-shadow: var(--card-shadow);
+   border-radius: 10px;
+   z-index: 1000;
+   transition: all 0.3s ease;
+ }
+
+ #qr-options-menu:hover {
+   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+ }
+
+ .rails-social-share-button .ssb-icon {
+   background-size: var(--size) var(--size);
+   height: var(--size);
+   width: var(--size);
+   transition: transform 0.3s ease;
+ }
+
+ .rails-social-share-button .ssb-icon:hover {
+   transform: scale(1.1);
+ }
+
+ .sidebar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 250px;
+   height: 100%;
+   background: rgba(255, 255, 255, 0.75);
+   backdrop-filter: blur(15px);
+   padding: 30px 20px;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   box-shadow: var(--card-shadow);
+   transition: all 0.3s ease;
+ }
+
+ .sidebar:hover {
+   backdrop-filter: blur(20px);
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+ }

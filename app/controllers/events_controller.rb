@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   require 'zip'
 
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :qr_code]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :qr_code, :guests]
 
   def index
     @events = Event.all
@@ -22,6 +22,18 @@ class EventsController < ApplicationController
     @message = @event.messages # Fetch associated messages
   end
 
+  def guests
+    @qr_code = @event.qr_code
+    qr = RQRCode::QRCode.new(@qr_code.qrCodeUrl)
+    @qr_code_svg = qr.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      module_size: 6,
+      standalone: true
+    ).html_safe
+
+  end
   def new
     @event = Event.new
   end

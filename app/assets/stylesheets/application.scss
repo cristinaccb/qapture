@@ -1,0 +1,17 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ *= require_tree .
+ *= require_self
+
+
+ @import "learn_more";
+ @import "event_progress_bar";
+ @import "style";
+
+ /* Additional Styles */
+@import "landing-page.scss";
+
+@import "main-style.scss";
+@import "_event_progress_bar.scss"

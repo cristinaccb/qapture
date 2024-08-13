@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Qapture - New Event</title>
-  <%= stylesheet_link_tag 'events', media: 'all' %>
+
 </head>
 <body>
   <header>
-    <img id="logo" src="logo.png" alt="Qapture Logo">
+    <img id="logo" src="<%= asset_url('logo.png') %>" alt="Qapture Logo">
+
+
   </header>
   <main>
     <h1>New Event</h1>

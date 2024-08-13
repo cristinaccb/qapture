@@ -1,25 +1,30 @@
 <header>
   <h1>Welcome to Qapture</h1>
   <% if user_signed_in? %>
-<%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+  <%= link_to 'Back', :back, class: 'button' %>
+  <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'button'%>
   <% end %>
 </header>
 
-<section>
+<!--<section>
   <h2>Create a New Event</h2>
-  <%= form_for @event, url: events_path do |f| %>
+  <%#= form_for @event, url: events_path do |f| %>-->
+<!--    <div class="form-group">-->
+      <%#= f.label :name, "Event Name" %>
+      <%#= f.text_field :name, required: true, class: "form-control" %>
+<!--    </div>
     <div class="form-group">
-      <%= f.label :name, "Event Name" %>
-      <%= f.text_field :name, required: true, class: "form-control" %>
-    </div>
+      <%#= f.label :file, "Upload File (Text, Image, Video)" %>-->
+      <%#= f.file_field :file, class: "form-control" %>
+<!--    </div>
     <div class="form-group">
-      <%= f.label :file, "Upload File (Text, Image, Video)" %>
-      <%= f.file_field :file, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.submit 'Create Event', class: 'button' %>
-    </div>
-  <% end %>
+      <%#= f.submit 'Create Event', class: 'button' %>-->
+<!--    </div>-->
+  <%# end %>
+<!--</section>-->
+<section>
+  <h2>Quick Actions</h2>
+  <%= link_to 'Create New Event', new_event_path, class: 'button' %>
 </section>
 
 <section>
@@ -67,10 +72,4 @@
   <% else %>
     <p>No uploads yet.</p>
   <% end %>
-</section>
-
-<section>
-  <h2>Quick Actions</h2>
-  <%= link_to 'Create New Event', new_event_path, class: 'button' %>
-  <%= link_to 'Back', :back, class: 'button' %>
 </section>

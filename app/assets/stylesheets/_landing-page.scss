@@ -1,0 +1,67 @@
+.button {
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: var(--card-shadow);
+}
+
+.button:hover {
+  background-color: #45a049;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+#qr-options-menu {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 15px;
+  box-shadow: var(--card-shadow);
+  border-radius: 10px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+#qr-options-menu:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.rails-social-share-button .ssb-icon {
+  background-size: var(--size) var(--size);
+  height: var(--size);
+  width: var(--size);
+  transition: transform 0.3s ease;
+}
+
+.rails-social-share-button .ssb-icon:hover {
+  transform: scale(1.1);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(15px);
+  padding: 30px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.sidebar:hover {
+  backdrop-filter: blur(20px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}

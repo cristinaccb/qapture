@@ -1,23 +1,13 @@
 .button {
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  border: none;
-  border-radius: 30px;
-  padding: 12px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 18px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: var(--card-shadow);
+  color: var(--primary-color);
+  padding: 8px 16px; // Add padding for some spacing
+  transition: color 0.3s; // Smooth transition on hover
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.button:hover {
-  background-color: #45a049;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-}
+
 
 #qr-options-menu {
   background-color: white;
@@ -33,16 +23,7 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-.rails-social-share-button .ssb-icon {
-  background-size: var(--size) var(--size);
-  height: var(--size);
-  width: var(--size);
-  transition: transform 0.3s ease;
-}
 
-.rails-social-share-button .ssb-icon:hover {
-  transform: scale(1.1);
-}
 
 .sidebar {
   position: fixed;

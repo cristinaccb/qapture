@@ -1,14 +1,12 @@
-<<<<<<< HEAD
 <% content_for :head do %>
   <meta name="csrf-token" content="<%= csrf_meta_tags %>">
   <meta name="event-id" content="<%= @event.id %>">
-  <%= stylesheet_link_tag 'event_progress_bar', media: 'all' %>
+
 <% end %>
-=======
 <h1><%= @event.name %></h1>
->>>>>>> fd3e84b74a015b400289768df90a550eedd06a52
 
 <section>
+  <%= link_to('guest landing page', guests_landing_page_event_path(@event)) %>
   <h2>Upload Files to This Event</h2>
   <%= form_for @upload, url: event_uploads_path(@event), html: { multipart: true } do |f| %>
     <div class="form-group">
@@ -16,7 +14,6 @@
       <%= f.file_field :file, class: "form-control" %>
     </div>
 
-<<<<<<< HEAD
   <!-- Progress Bar -->
   <ul class="progress-bar">
     <li class="step active">
@@ -40,14 +37,12 @@
       <p class="no-qr-message">No QR code generated yet. Create one to easily share this event.</p>
     <% end %>
   </div>
-=======
     <!-- Capture Section -->
     <div id="capture-section">
       <h3>Or Take Photo/Video</h3>
       <video id="video" width="640" height="480" autoplay></video>
       <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
       <video id="recordedVideo" controls style="display: none;"></video>
->>>>>>> fd3e84b74a015b400289768df90a550eedd06a52
 
       <button type="button" id="snap" class="button">Take Photo</button>
       <button type="button" id="startRecording" class="button">Start Recording</button>
@@ -137,6 +132,7 @@
   <% end %>
 </section>
 
+<!--This script should be put into its own JS file and imported into this page rather than being hardcoded into it-->
 <script>
   const video = document.getElementById('video');
   const canvas = document.getElementById('canvas');

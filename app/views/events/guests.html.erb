@@ -1,0 +1,11 @@
+<h1>* Find me in views/events/guests.html.erb *</h1>
+ <div id="qr-code-container" class="qr-code-container">
+    <% if @event.qr_code.present? %>
+      <%= @qr_code_svg %>
+    <% else %>
+      <p class="no-qr-message">No QR code generated yet. Create one to easily share this event.</p>
+    <% end %>
+  </div>
+
+  <h2>add your guest upload button here</h2>
+  <h2>add your guest view album button here</h2>

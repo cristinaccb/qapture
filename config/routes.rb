@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
       get 'qr_code'
       post 'download_selected'
+      get 'guests', to: 'events#guests', as: 'guests_landing_page'
     end
 
     resources :events, only: [:create, :show, :destroy]

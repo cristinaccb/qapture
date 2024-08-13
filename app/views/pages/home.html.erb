@@ -1,75 +1,64 @@
-<header>
-  <h1>Welcome to Qapture</h1>
-  <% if user_signed_in? %>
-  <%= link_to 'Back', :back, class: 'button' %>
-  <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'button'%>
-  <% end %>
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qapture Albums</title>
+    <link rel="stylesheet" href="_main-styles.scss">
+</head>
+<body>
+    <div class="container">
+        <!-- Main header section with logo and navigation links -->
+        <header class="main-header">
+            <h1 class="logo"><a href="/" aria-label="Qapture Home">Qapture</a></h1>
+            <% if user_signed_in? %>
+                <nav class="user-nav" aria-label="User Navigation">
+                    <a href="#" onclick="history.back()" class="button">Back</a>
+                    <%= button_to 'Log out', destroy_user_session_path, method: :delete, class: 'button' %>
+                </nav>
+            <% end %>
+        </header>
 
-<!--<section>
-  <h2>Create a New Event</h2>
-  <%#= form_for @event, url: events_path do |f| %>-->
-<!--    <div class="form-group">-->
-      <%#= f.label :name, "Event Name" %>
-      <%#= f.text_field :name, required: true, class: "form-control" %>
-<!--    </div>
-    <div class="form-group">
-      <%#= f.label :file, "Upload File (Text, Image, Video)" %>-->
-      <%#= f.file_field :file, class: "form-control" %>
-<!--    </div>
-    <div class="form-group">
-      <%#= f.submit 'Create Event', class: 'button' %>-->
-<!--    </div>-->
-  <%# end %>
-<!--</section>-->
-<section>
-  <h2>Quick Actions</h2>
-  <%= link_to 'Create New Event', new_event_path, class: 'button' %>
-</section>
+        <!-- Main navigation links for the app -->
+        <nav class="main-nav" aria-label="Primary Navigation">
+            <a href="/All Events">My Events</a>
+            <a href="/Favorites">Favorites</a>
+            <%= link_to 'Create New ', new_event_path, class: 'button' %>
+        </nav>
 
-<section>
-  <h2>Recent Events</h2>
-  <% if @recent_events.any? %>
-    <div class="cards-grid">
-      <% @recent_events.each do |event| %>
-        <div class="card">
-          <div class="card-image">
-            <!-- Placeholder image, you can replace with event image -->
-            <%= image_tag 'placeholder.png', alt: event.name %>
-          </div>
-          <div class="card-content">
-            <h3><%= link_to event.name, event_path(event) %></h3>
-            <p>Date: <%= event.date.strftime("%B %d, %Y") %></p>
-            <p>Host: <%= event.host %></p>
-            <p>Location: <%= event.location %></p>
-            <p><%= event.uploads.count %> uploads</p>
-          </div>
-        </div>
-      <% end %>
+        <main>
+            <!-- Recent events section displayed as horizontal cards -->
+            <section class="recent-events">
+                <h2>Your Recent Events</h2>
+                <p>Here's a look at your latest gatherings. Click on any event to revisit those memories.</p>
+                <% if @recent_events.any? %>
+                    <div class="cards-grid">
+                        <% @recent_events.each do |event| %>
+                            <article class="card">
+                                <div class="card-image">
+                                    <%= image_tag 'placeholder.png', alt: event.name, class: 'responsive-img' %>
+                                </div>
+                                <div class="card-content">
+                                    <h3><%= link_to event.name, event_path(event), aria_label: "View event #{event.name}" %></h3>
+                                    <p><strong>Date:</strong> <%= event.date.strftime("%B %d, %Y") %></p>
+                                    <p><strong>Host:</strong> <%= event.host %></p>
+                                    <p><strong>Location:</strong> <%= event.location %></p>
+                                    <p><strong>Uploads:</strong> <%= event.uploads.count %> photos/videos</p>
+                                </div>
+                            </article>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <p>No events yet? Let’s change that! <%= link_to 'Create your first event', new_event_path %> and start capturing the moments that matter.</p>
+                <% end %>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <p>© 2024 Qapture. Capture, share, and relive your moments.</p>
+        </footer>
     </div>
-  <% else %>
-    <p>No events yet. <%= link_to 'Create your first event', new_event_path %>!</p>
-  <% end %>
-  <%= link_to 'View all events', events_path, class: 'button' %>
-</section>
 
-<section>
-  <h2>Recent Uploads</h2>
-  <% if @recent_uploads.any? %>
-    <div class="uploads-grid">
-      <% @recent_uploads.each do |upload| %>
-        <div class="card">
-          <div class="card-image">
-            <%= image_tag upload.image.url if upload.image? %>
-          </div>
-          <div class="card-content">
-            <h3><%= link_to upload.title, event_upload_path(upload.event, upload) %></h3>
-            <p>Event: <%= link_to upload.event.name, event_path(upload.event) %></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-    <p>No uploads yet.</p>
-  <% end %>
-</section>
+    <script src="albums.js"></script>
+</body>
+</html>

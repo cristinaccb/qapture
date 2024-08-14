@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   require 'zip'
-
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :qr_code, :guests]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :qr_code, :guests, :manage_uploads, :download_album]
 
   def index
     @events = Event.all
@@ -32,8 +31,8 @@ class EventsController < ApplicationController
       module_size: 6,
       standalone: true
     ).html_safe
-
   end
+
   def new
     @event = Event.new
   end
@@ -48,6 +47,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    # @event is already set by the before_action
   end
 
   def update
@@ -67,15 +67,15 @@ class EventsController < ApplicationController
   end
 
   def qr_code
-      @qr_code = @event.qr_code
-      qr = RQRCode::QRCode.new(@qr_code.qrCodeUrl)
-      @qr_code_svg = qr.as_svg(
-        offset: 0,
-        color: '000',
-        shape_rendering: 'crispEdges',
-        module_size: 6,
-        standalone: true
-      ).html_safe
+    @qr_code = @event.qr_code
+    qr = RQRCode::QRCode.new(@qr_code.qrCodeUrl)
+    @qr_code_svg = qr.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      module_size: 6,
+      standalone: true
+    ).html_safe
   end
 
   def download_selected
@@ -85,6 +85,34 @@ class EventsController < ApplicationController
     zip_file = package_uploads_as_zip(selected_uploads)
 
     send_file(zip_file, type: 'application/zip', disposition: 'attachment')
+  end
+
+  def download_album
+    @uploads = @event.uploads
+
+    if @uploads.empty?
+      redirect_to @event, alert: 'There are no files to download for this event.'
+      return
+    end
+
+    zipfile_name = "#{Rails.root}/tmp/#{@event.name.parameterize}_album.zip"
+
+    begin
+      Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+        @uploads.each do |upload|
+          file_path = upload.file.path # Adjust this based on how you store files
+          zipfile.add(File.basename(file_path), file_path) if File.exist?(file_path)
+        end
+      end
+
+      send_file zipfile_name, type: 'application/zip', disposition: 'attachment'
+    ensure
+      File.delete(zipfile_name) if zipfile_name && File.exist?(zipfile_name)
+    end
+  end
+
+  def manage_uploads
+    @uploads = @event.uploads.to_a
   end
 
   private
@@ -102,14 +130,11 @@ class EventsController < ApplicationController
     temp_file.close
   end
 
-
-  private
-
   def set_event
     @event = Event.find(params[:id])
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :location, :host, :file) # Include :file here for upload functionality
+    params.require(:event).permit(:name, :date, :location, :host, :file)
   end
 end

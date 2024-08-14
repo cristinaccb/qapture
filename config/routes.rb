@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       get 'guests', to: 'events#guests', as: 'guests_landing_page'
       get 'uploads/new', to: 'uploads#new', as: 'new_upload'
       get 'messages/new', to: 'messages#new', as: 'new_message'
+      get :manage_uploads
+      get :download_album
     end
 
     resources :events, only: [:create, :show, :destroy]

@@ -49,19 +49,38 @@
 </div>
 
 <script>
-  function showQRCodeModal() {
+function showQRCodeModal() {
     document.getElementById('qr-code-modal').style.display = 'block';
-  }
+}
 
-  function closeQRCodeModal() {
+function closeQRCodeModal() {
     document.getElementById('qr-code-modal').style.display = 'none';
-  }
+}
 
-  function printQRCode() {
+function printQRCode() {
     window.print();
-  }
+}
 
-  function downloadQRCode() {
-    // Add functionality to download the QR code image.
-  }
+function downloadQRCode() {
+    const svgElement = document.querySelector('.qr-code-wrapper svg');
+    const svgData = new XMLSerializer().serializeToString(svgElement);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    const svgBlob = new Blob([svgData], {type: "image/svg+xml;charset=utf-8"});
+    const url = URL.createObjectURL(svgBlob);
+
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        const canvasUrl = canvas.toDataURL("image/png");
+        const link = document.createElement('a');
+        link.download = 'qr-code.png';
+        link.href = canvasUrl;
+        link.click();
+    };
+
+    img.src = url;
+}
 </script>
+

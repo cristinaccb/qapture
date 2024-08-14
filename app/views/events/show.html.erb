@@ -1,197 +1,38 @@
-<% content_for :head do %>
-  <meta name="csrf-token" content="<%= csrf_meta_tags %>">
-  <meta name="event-id" content="<%= @event.id %>">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Event - Qapture</title>
+      <%= link_to('guest landing page', guests_landing_page_event_path(@event)) %>
 
-<% end %>
-<h1><%= @event.name %></h1>
+    <link rel="stylesheet" href="host_style.css"> <!-- Assuming you have a separate stylesheet -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Manage Event: <%= @event.name %></h1>
+        </header>
 
-<section>
-  <%= link_to('guest landing page', guests_landing_page_event_path(@event)) %>
-  <h2>Upload Files to This Event</h2>
-  <%= form_for @upload, url: event_uploads_path(@event), html: { multipart: true } do |f| %>
-    <div class="form-group">
-      <%= f.label :file, "Upload File (Text, Image, Video)" %>
-      <%= f.file_field :file, class: "form-control" %>
-    </div>
+        <div class="button-container">
+            <%= link_to "View Album", album_event_path(@event), class: "btn btn-primary" %>
 
-  <!-- Progress Bar -->
-  <ul class="progress-bar">
-    <li class="step active">
-      <div class="step-icon">1</div>
-      <p>Details</p>
-    </li>
-    <li class="step">
-      <div class="step-icon">2</div>
-      <p>QR</p>
-    </li>
-    <li class="step">
-      <div class="step-icon">3</div>
-      <p>Share QR</p>
-    </li>
-  </ul>
+            <!-- Manage Event Details -->
+            <%= link_to "Edit Event Details", edit_event_path(@event), class: "btn btn-primary" %>
 
-  <div id="qr-code-container" class="qr-code-container">
-    <% if @event.qr_code.present? %>
-      <%= @qr_code_svg %>
-    <% else %>
-      <p class="no-qr-message">No QR code generated yet. Create one to easily share this event.</p>
-    <% end %>
-  </div>
-    <!-- Capture Section -->
-    <div id="capture-section">
-      <h3>Or Take Photo/Video</h3>
-      <video id="video" width="640" height="480" autoplay></video>
-      <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
-      <video id="recordedVideo" controls style="display: none;"></video>
+            <!-- Manage Uploads -->
+            <%= link_to "Manage Uploads", manage_uploads_event_path(@event), class: "btn btn-tertiary" %>
 
-      <button type="button" id="snap" class="button">Take Photo</button>
-      <button type="button" id="startRecording" class="button">Start Recording</button>
-      <button type="button" id="stopRecording" class="button" style="display: none;">Stop Recording</button>
-
-      <!-- Hidden fields to store captured media -->
-      <input type="hidden" id="media_data" name="upload[media_data]">
-      <input type="hidden" id="media_type" name="upload[media_type]">
-    </div>
-
-    <div class="form-group">
-      <%= f.submit 'Upload File', class: 'button' %>
-    </div>
-  <% end %>
-</section>
-
-<h3>Leave a Message</h3>
-
-<%= form_with(model: [@event, @event.messages.build], local: true) do |form| %>
-  <div class="field">
-    <%= form.label :content, "Your Message" %>
-    <%= form.text_area :content, rows: 4 %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Post Message" %>
-  </div>
-<% end %>
-
-<% if @event.messages.any? %>
-  <h3>Messages</h3>
-  <ul>
-    <% @event.messages.each do |message| %>
-      <li>
-        <strong><%= message.user.present? ? message.user.name : "Anonymous" %>:</strong>
-        <%= message.content %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
-<section>
-  <h2>Uploads for <%= @event.name %></h2>
-  <% if @event.uploads.any? %>
-    <div class="uploads-grid">
-      <%= form_tag download_selected_event_path(@event), method: :post do %>
-        <% @event.uploads.each do |upload| %>
-          <div class="card">
-            <div class="card-image">
-              <%= check_box_tag "selected_uploads[]", upload.id %>
-              <% if upload.mediaType.present? && upload.mediaType.include?("image") %>
-                <%= image_tag upload.mediaUrl if upload.mediaUrl.present? %>
-              <% elsif upload.mediaType.present? && upload.mediaType.include?("video") %>
-                <video controls>
-                  <source src="<%= upload.mediaUrl %>" type="<%= upload.mediaType %>">
-                  Your browser does not support the video tag.
-                </video>
-              <% else %>
-                <p>File cannot be previewed.</p>
-              <% end %>
-            </div>
-            <div class="card-content">
-              <% if upload.persisted? %>
-                <h3><%= link_to "View Upload", event_upload_path(@event, upload) %></h3>
-              <% else %>
-                <p>File has not been saved yet.</p>
-              <% end %>
-              <p>Uploaded on: <%= upload.created_at.strftime("%B %d, %Y") if upload.created_at %></p>
-            </div>
-          </div>
-        <% end %>
-        <div class="form-group">
-          <%= submit_tag 'Download Selected', class: 'button download-button' %>
+            <!-- Download Event Album -->
+            <%= link_to "Download Event Album", download_album_event_path(@event), class: "btn btn-secondary", method: :get %>
+            <%= link_to "View Album", album_event_path(@event), class: "btn btn-primary" %>
+            <%= link_to "Upload Media", new_event_upload_path(@event), class: "btn btn-secondary" %>
+            <%= link_to "Leave a Message", new_event_upload_path(@event), class: "btn btn-tertiary" %>
         </div>
-      <% end %>
+
+        <footer class="main-footer">
+            <p>© 2024 Qapture. Capture, share, and relive your moments.</p>
+        </footer>
     </div>
-  <% else %>
-    <p>No uploads yet.</p>
-  <% end %>
-</section>
-
-<section>
-  <%= link_to 'Back to Events', events_path, class: 'button' %>
-
-  <%= form_for @event, url: event_path(@event), method: :delete, data: { confirm: 'Are you sure you want to delete this event?' }, class: 'delete-form' do %>
-    <%= submit_tag 'Delete Event', class: 'button delete-button' %>
-  <% end %>
-</section>
-
-<!--This script should be put into its own JS file and imported into this page rather than being hardcoded into it-->
-<script>
-  const video = document.getElementById('video');
-  const canvas = document.getElementById('canvas');
-  const context = canvas.getContext('2d');
-  const snap = document.getElementById('snap');
-  const startRecording = document.getElementById('startRecording');
-  const stopRecording = document.getElementById('stopRecording');
-  const recordedVideo = document.getElementById('recordedVideo');
-  const mediaDataInput = document.getElementById('media_data');
-  const mediaTypeInput = document.getElementById('media_type');
-
-  let mediaRecorder;
-  let recordedChunks = [];
-
-  // Request access to the camera
-  navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-    .then(stream => {
-      video.srcObject = stream;
-
-      mediaRecorder = new MediaRecorder(stream);
-
-      mediaRecorder.ondataavailable = function(event) {
-        if (event.data.size > 0) {
-          recordedChunks.push(event.data);
-        }
-      };
-
-      mediaRecorder.onstop = function() {
-        const blob = new Blob(recordedChunks, { type: 'video/webm' });
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function() {
-          const base64data = reader.result;
-          mediaDataInput.value = base64data;
-          mediaTypeInput.value = 'video/webm';
-        }
-        recordedVideo.src = URL.createObjectURL(blob);
-        recordedVideo.style.display = 'block';
-        stopRecording.style.display = 'none';
-        startRecording.style.display = 'inline-block';
-      };
-    });
-
-  snap.addEventListener('click', () => {
-    context.drawImage(video, 0, 0, 640, 480);
-    const dataURL = canvas.toDataURL('image/png');
-    canvas.style.display = 'block';
-    mediaDataInput.value = dataURL;
-    mediaTypeInput.value = 'image/png';
-  });
-
-  startRecording.addEventListener('click', () => {
-    recordedChunks = [];
-    mediaRecorder.start();
-    startRecording.style.display = 'none';
-    stopRecording.style.display = 'inline-block';
-  });
-
-  stopRecording.addEventListener('click', () => {
-    mediaRecorder.stop();
-  });
-</script>
+</body>
+</html>

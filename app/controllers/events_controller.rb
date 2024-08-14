@@ -131,8 +131,13 @@ class EventsController < ApplicationController
   end
 
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find_by(id: params[:id])
+    unless @event
+      flash[:alert] = "Event not found"
+      redirect_to events_path
+    end
   end
+
 
   def event_params
     params.require(:event).permit(:name, :date, :location, :host, :file)

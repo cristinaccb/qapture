@@ -11,7 +11,8 @@
  @import "style";
 
  /* Additional Styles */
-@import "landing-page.scss";
+@import "landing-page";
 
-@import "main-style.scss";
-@import "_event_progress_bar.scss"
+@import "main-style";
+@import "event_progress_bar";
+@import "guests";

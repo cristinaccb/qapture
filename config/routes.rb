@@ -12,8 +12,11 @@ Rails.application.routes.draw do
     resources :uploads
     member do
       get 'qr_code'
+      get 'album'
       post 'download_selected'
       get 'guests', to: 'events#guests', as: 'guests_landing_page'
+      get 'uploads/new', to: 'uploads#new', as: 'new_upload'
+      get 'messages/new', to: 'messages#new', as: 'new_message'
     end
 
     resources :events, only: [:create, :show, :destroy]

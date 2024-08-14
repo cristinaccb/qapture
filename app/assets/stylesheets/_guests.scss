@@ -1,0 +1,35 @@
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 25px;
+  color: white;
+  border-radius: 30px;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+
+  &.btn-primary {
+    background-color: #8b84d9;
+  }
+
+  &.btn-secondary {
+    background-color: #8b84d9;
+  }
+
+  &.btn-tertiary {
+    background-color: #8b84d9;
+  }
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}

@@ -1,11 +1,24 @@
-<h1>* Find me in views/events/guests.html.erb *</h1>
- <div id="qr-code-container" class="qr-code-container">
-    <% if @event.qr_code.present? %>
-      <%= @qr_code_svg %>
-    <% else %>
-      <p class="no-qr-message">No QR code generated yet. Create one to easily share this event.</p>
-    <% end %>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qapture</title>
+</head>
+<body>
+    <div class="container">
 
-  <h2>add your guest upload button here</h2>
-  <h2>add your guest view album button here</h2>
+            <h1><%= @event.name %></h1>
+
+          <div class="button-container">
+            <%= link_to "View Album", album_event_path(@event), class: "btn btn-primary" %>
+            <%= link_to "Upload Media", new_event_upload_path(@event), class: "btn btn-secondary" %>
+            <%= link_to "Leave a Message", new_event_upload_path(@event), class: "btn btn-tertiary" %>
+          </div>
+
+          <footer class="main-footer">
+            <p>© 2024 Qapture. Capture, share, and relive your moments.</p>
+        </footer>
+    </div>
+</body>
+</html>

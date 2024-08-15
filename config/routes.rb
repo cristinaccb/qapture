@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get :download_album
     end
 
-    resources :events, only: [:create, :show, :destroy]
+    resources :events, only: [:index, :create, :show, :destroy]
     post 'download_selected', on: :member
     resources :messages, only: [:create, :index]
   end

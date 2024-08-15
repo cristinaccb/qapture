@@ -27,6 +27,8 @@
             <%= link_to "Download Event Album", download_album_event_path(@event), class: "btn btn-secondary", method: :get %>
             <%= link_to "Upload Media", new_event_upload_path(@event), class: "btn btn-secondary" %>
             <%= link_to "Leave a Message", new_event_upload_path(@event), class: "btn btn-tertiary" %>
+            <%= link_to "View QR", qr_code_event_path(@event), class: "btn btn-secondary" %>
+        </div>
         </div>
 
         <footer class="main-footer">

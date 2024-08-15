@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Event - Qapture</title>
-      <%= link_to('guest landing page', guests_landing_page_event_path(@event)) %>
-
     <link rel="stylesheet" href="host_style.css"> <!-- Assuming you have a separate stylesheet -->
 </head>
 <body>
@@ -16,24 +14,97 @@
 
         <div class="button-container">
             <%= link_to "View Album", events_path, class: "btn btn-primary" %>
-
-            <!-- Manage Event Details -->
             <%= link_to "Edit Event Details", edit_event_path(@event), class: "btn btn-primary" %>
-
-            <!-- Manage Uploads -->
             <%= link_to "Manage Uploads", manage_uploads_event_path(@event), class: "btn btn-tertiary" %>
-
-            <!-- Download Event Album -->
             <%= link_to "Download Event Album", download_album_event_path(@event), class: "btn btn-secondary", method: :get %>
             <%= link_to "Upload Media", new_event_upload_path(@event), class: "btn btn-secondary" %>
             <%= link_to "Leave a Message", new_event_upload_path(@event), class: "btn btn-tertiary" %>
             <%= link_to "View QR", qr_code_event_path(@event), class: "btn btn-secondary" %>
+
+            <!-- Button for Photo/Video Booth -->
+            <button id="open-photo-video-booth" class="btn btn-secondary">Take Photo or Video</button>
         </div>
+
+        <div id="photo-video-booth" style="display: none;">
+            <video id="video" width="640" height="480" autoplay></video>
+            <button id="capture-photo" class="btn btn-primary">Capture Photo</button>
+            <button id="start-recording" class="btn btn-primary">Start Recording</button>
+            <button id="stop-recording" class="btn btn-primary" style="display: none;">Stop Recording</button>
+            <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+            <button id="save-photo" class="btn btn-secondary" style="display: none;">Save Photo</button>
+            <a id="download-video" class="btn btn-secondary" style="display: none;">Download Video</a>
         </div>
 
         <footer class="main-footer">
             <p>© 2024 Qapture. Capture, share, and relive your moments.</p>
         </footer>
     </div>
+
+    <!-- JavaScript for handling photo and video capture -->
+    <script>
+        document.getElementById('open-photo-video-booth').addEventListener('click', function() {
+            document.getElementById('photo-video-booth').style.display = 'block';
+
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+                    var video = document.getElementById('video');
+                    video.srcObject = stream;
+                    video.play();
+
+                    // Start recording
+                    var mediaRecorder;
+                    var recordedChunks = [];
+
+                    document.getElementById('start-recording').addEventListener('click', function() {
+                        mediaRecorder = new MediaRecorder(stream);
+                        mediaRecorder.start();
+                        document.getElementById('start-recording').style.display = 'none';
+                        document.getElementById('stop-recording').style.display = 'inline';
+
+                        mediaRecorder.ondataavailable = function(event) {
+                            if (event.data.size > 0) {
+                                recordedChunks.push(event.data);
+                            }
+                        };
+
+                        mediaRecorder.onstop = function() {
+                            var blob = new Blob(recordedChunks, {
+                                type: 'video/webm'
+                            });
+                            var url = URL.createObjectURL(blob);
+                            var downloadLink = document.getElementById('download-video');
+                            downloadLink.href = url;
+                            downloadLink.download = 'video.webm';
+                            downloadLink.style.display = 'inline';
+                        };
+                    });
+
+                    document.getElementById('stop-recording').addEventListener('click', function() {
+                        mediaRecorder.stop();
+                        document.getElementById('stop-recording').style.display = 'none';
+                    });
+                });
+            }
+        });
+
+        document.getElementById('capture-photo').addEventListener('click', function() {
+            var canvas = document.getElementById('canvas');
+            var video = document.getElementById('video');
+            var context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            document.getElementById('canvas').style.display = 'block';
+            document.getElementById('save-photo').style.display = 'inline';
+        });
+
+        document.getElementById('save-photo').addEventListener('click', function() {
+            var canvas = document.getElementById('canvas');
+            var dataURL = canvas.toDataURL('image/png');
+            var link = document.createElement('a');
+            link.href = dataURL;
+            link.download = 'photo.png';
+            link.click();
+        });
+    </script>
 </body>
 </html>

@@ -11,7 +11,7 @@
             <h1><%= @event.name %></h1>
 
           <div class="button-container">
-            <%= link_to "View Album", album_event_path(@event), class: "btn btn-primary" %>
+            <%= link_to "View Album", events_path, class: "btn btn-primary" %>
             <%= link_to "Upload Media", new_event_upload_path(@event), class: "btn btn-secondary" %>
             <%= link_to "Leave a Message", new_event_upload_path(@event), class: "btn btn-tertiary" %>
              <%= link_to "View QR", qr_code_event_path(@event), class: "btn btn-secondary" %>

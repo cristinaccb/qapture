@@ -10,6 +10,8 @@
     <div class="container">
         <header>
             <h1>Manage Event: <%= @event.name %></h1>
+           <%= link_to('guest landing page', guests_landing_page_event_path(@event)) %>
+
         </header>
 
         <div class="button-container">

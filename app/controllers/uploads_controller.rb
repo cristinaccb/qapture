@@ -15,8 +15,9 @@ class UploadsController < ApplicationController
 
   def create
     @upload = @event.uploads.build(upload_params)
+    @upload.user_id = current_user.id
     if @upload.save
-      redirect_to event_upload_path(@event, @upload), notice: 'Upload was successfully created.'
+      redirect_to event_uploads_path(@event), notice: 'Upload was successfully created.'
     else
       render :new
     end

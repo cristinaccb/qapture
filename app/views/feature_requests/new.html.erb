@@ -1,0 +1,17 @@
+<h1>Share Your Feature Ideas</h1>
+
+<%= form_with model: @feature_request, url: feature_requests_path do |f| %>
+  <div class="form-group">
+    <%= f.label :title, "Feature Name" %>
+    <%= f.text_field :title, required: true, placeholder: "Give your idea a name", class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "Tell Us More" %>
+    <%= f.text_area :description, required: true, placeholder: "How would this feature make your experience better?", class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit 'Share Your Thoughts', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -8,4 +8,15 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   # Add Devise for user authentication
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+
+
+  def host?
+    role == 'host'
+  end
+
+  def guest?
+    role == 'guest'
+  end
+
+  
 end

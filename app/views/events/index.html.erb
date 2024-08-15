@@ -14,7 +14,8 @@
                 <a href="/My Uploads">Add Moment</a>
                 <a href="/home">My Events</a>
                 <a href="/Favorites">Favorites</a>
-            </nav>
+                <%= image_tag @upload.file.url if @upload && @upload.file? %>
+
         </header>
 
         <main>

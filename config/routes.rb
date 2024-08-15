@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'feature_requests/new'
+  get 'feature_requests/create'
+  get 'feature_requests/index'
   get 'messages/create'
   devise_for :users
   root 'pages#landing'
@@ -25,6 +28,8 @@ Rails.application.routes.draw do
     post 'download_selected', on: :member
     resources :messages, only: [:create, :index]
   end
+
+  resources :feature_requests, only: [:new, :create, :index]
 
   get 'learn_more', to: 'pages#learn_more'
 end

@@ -17,7 +17,6 @@
         <div class="button-container">
             <%= link_to "View Album", events_path, class: "btn btn-primary" %>
             <%= link_to "Edit Event Details", edit_event_path(@event), class: "btn btn-primary" %>
-            <%= link_to "Manage Uploads", manage_uploads_event_path(@event), class: "btn btn-tertiary" %>
             <%= link_to "Download Event Album", download_album_event_path(@event), class: "btn btn-secondary", method: :get %>
             <%= link_to "Upload Media", new_event_upload_path(@event), class: "btn btn-secondary" %>
             <%= link_to "Leave a Message", new_event_upload_path(@event), class: "btn btn-tertiary" %>

@@ -1,4 +1,4 @@
-<%= image_tag @upload.image.url if @upload.image? %>
+<%= image_tag @upload.file.url if @upload.file? %>
 
 <%= link_to 'Edit', edit_event_upload_path(@event, @upload) %> |
 <%= link_to 'Delete', event_upload_path(@event, @upload), method: :delete, data: { confirm: 'Are you sure?' } %> |

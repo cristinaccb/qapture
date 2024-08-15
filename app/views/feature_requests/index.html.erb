@@ -1,0 +1,8 @@
+<h1>Feature Requests</h1>
+
+<% @feature_requests.each do |request| %>
+  <div class="feature-request">
+    <h2><%= request.title %></h2>
+    <p><%= request.description %></p>
+  </div>
+<% end %>

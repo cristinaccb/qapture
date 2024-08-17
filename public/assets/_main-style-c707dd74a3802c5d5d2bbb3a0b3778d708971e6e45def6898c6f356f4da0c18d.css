@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+/* line 3, app/assets/stylesheets/_main-style.scss */
+:root {
+  --primary-color: #BB86FC;
+  --secondary-color: #03DAC5;
+  --accent-color: #CF6679;
+  --background-color: #f5f5f5;
+  --text-color: #444;
+  --font-family: 'Montserrat', sans-serif;
+}
+
+/* line 12, app/assets/stylesheets/_main-style.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* line 18, app/assets/stylesheets/_main-style.scss */
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* line 25, app/assets/stylesheets/_main-style.scss */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* line 31, app/assets/stylesheets/_main-style.scss */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+/* line 38, app/assets/stylesheets/_main-style.scss */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* line 42, app/assets/stylesheets/_main-style.scss */
+.logo img {
+  max-width: 200px;
+  height: auto;
+}
+
+/* line 48, app/assets/stylesheets/_main-style.scss */
+nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* line 55, app/assets/stylesheets/_main-style.scss */
+.nav-button, nav a {
+  color: var(--primary-color);
+  padding: 8px 16px;
+  transition: color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 64, app/assets/stylesheets/_main-style.scss */
+.cards-grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 10px;
+}
+
+/* line 71, app/assets/stylesheets/_main-style.scss */
+.cards-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* line 75, app/assets/stylesheets/_main-style.scss */
+.cards-grid .card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+  padding: 20px;
+  text-align: left;
+}
+
+/* line 87, app/assets/stylesheets/_main-style.scss */
+main {
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* line 92, app/assets/stylesheets/_main-style.scss */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  /* line 100, app/assets/stylesheets/_main-style.scss */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  /* line 105, app/assets/stylesheets/_main-style.scss */
+  nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+}

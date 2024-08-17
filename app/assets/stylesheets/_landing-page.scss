@@ -1,8 +1,9 @@
 body {
-  font-family: var(--font-family);
+  font-family: noto sans japanese;
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
+  align-items: center;
 }
 
 .cards-grid {
@@ -49,15 +50,8 @@ footer {
   }
 }
 
-header.main-header {
+.email-signup {
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-}
-
-main {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  align-items: center;
 }

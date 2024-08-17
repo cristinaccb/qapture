@@ -26,10 +26,9 @@ body {
 }
 
 #logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--primary-color);
-  max-width: 10px;
+  display: flex;
+  max-width: 200px;
+  align-items: center;
   height: auto;
 }
 

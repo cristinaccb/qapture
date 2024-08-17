@@ -54,3 +54,19 @@ html, body {
   align-items: center; /* Vertically aligns items in the center */
   gap: 10px; /* Adds spacing between the buttons */
 }
+
+.qr-code-container {
+  display: flex;
+  justify-content: center;
+}
+
+.qr-code {
+  text-align: center;
+  color: #BB86FC;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap between buttons as needed */
+  margin-top: 10px; /* Optional: Add space above the buttons */
+}

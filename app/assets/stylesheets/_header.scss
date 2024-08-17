@@ -1,50 +1,66 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #BB86FC;
+  --secondary-color: #03DAC5;
+  --accent-color: #CF6679;
+  --background-color: #ffffff;
+  --text-color: #444;
+  --font-family: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: #ffefd5;
 }
 
-.neobrutalist-header {
-  background: #BB86FC;
-  color: #000;
-  text-align: center;
-  padding: 20px;
-  font-size: 24px;
-  cursor: pointer;
-  border: 4px solid #333;
-  box-shadow: 8px 8px 0 #ffefd5, 16px 16px 0 #333;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-.main-content {
-  margin-top: 88px; // Adjust this value to the height of your header
-  padding: 20px;
-}
-
-// Scrolling text and other styles remain the same
-.scrolling-text {
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
-  white-space: nowrap;
-  box-sizing: border-box;
-
-  span {
-      display: inline-block;
-      padding-left: 100%;
-      color: #000;
-      animation: scroll 15s linear infinite;
-  }
 }
 
-@keyframes scroll {
-  0% {
-      transform: translateX(100%);
+#logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-color);
+  max-width: 10px;
+  height: auto;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .nav-item {
+    &:nth-child(1) {
+      flex: 3;
+    }
+
+    &:nth-child(2) {
+      flex: 2;
+      display: flex;
+
+      p {
+        flex: 1;
+      }
+    }
   }
-  100% {
-      transform: translateX(-100%);
+
+  a,
+  .nav-button {
+    color: var(--primary-color);
+    padding: 8px 16px;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }

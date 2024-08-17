@@ -15,12 +15,11 @@
 }
 
 .main-content {
-  margin-top: 88px; // Adjust this value to the height of your header
+  margin-top: 88px;
   padding: 20px;
 }
 
 .scrolling-text {
-  overflow: hidden;
   white-space: nowrap;
   box-sizing: border-box;
 
@@ -39,4 +38,8 @@
   100% {
     transform: translateX(-100%);
   }
+}
+
+html, body {
+  overflow-y: auto; 
 }

@@ -41,5 +41,16 @@
 }
 
 html, body {
-  overflow-y: auto; 
+  overflow-y: auto;
+}
+
+.main-header h1 {
+  text-align: center;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between; /* Or center, flex-start, etc., depending on the desired layout */
+  align-items: center; /* Vertically aligns items in the center */
+  gap: 10px; /* Adds spacing between the buttons */
 }

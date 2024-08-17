@@ -70,3 +70,17 @@ html, body {
   gap: 10px; /* Adjust the gap between buttons as needed */
   margin-top: 10px; /* Optional: Add space above the buttons */
 }
+
+
+header.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}

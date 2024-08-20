@@ -1,9 +1,9 @@
 body {
-  font-family: noto sans japanese;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.6;
-  align-items: center;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: #fafafa;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 .cards-grid {
@@ -49,4 +49,3 @@ footer {
     align-items: center;
   }
 }
-

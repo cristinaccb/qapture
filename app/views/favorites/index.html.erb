@@ -1,0 +1,8 @@
+<h1>Your Favorites</h1>
+<div>
+  <% @favorites.each do |favorite| %>
+    <p><%= favorite.name %></p> <!-- Modify according to your model attributes -->
+    <%= link_to 'Delete', favorite_path(favorite), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+</div>
+<%= link_to 'Add New Favorite', new_favorite_path %>

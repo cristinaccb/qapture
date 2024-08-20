@@ -6,6 +6,10 @@
     <img src="<%= asset_url(upload.file.url) %>">
     <p>Uploaded by: <%= upload.user.present? ? upload.user.name : "Anonymous" %></p>
     <%= link_to 'Edit', edit_event_upload_path(@event, upload) %> |
-    <%= link_to 'Delete', event_upload_path(@event, upload), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', event_upload_path(@event, upload), method: :delete, data: { confirm: 'Are you sure?' } %> |
+
+<%= link_to 'Favorite', favorite_event_upload_path(@event, upload), method: :post %>
+<%= link_to 'Unfavorite', unfavorite_event_upload_path(@event, upload), method: :delete %>
+
   </div>
 <% end %>

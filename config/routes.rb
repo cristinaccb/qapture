@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   resources :events do
     resources :uploads do
       member do
-        post 'favorite'
-        delete 'unfavorite'
+      post 'favorite', to: 'favorites#create'
+      delete 'unfavorite', to: 'favorites#destroy'
       end
     end
 
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index, :create, :destroy, :show, :new, :edit, :update]
 
   # If you want to manually define a route for the index page:
-  get '/favorites', to: 'favorites#index'
+  resources :favorites, only: [:index, :create, :destroy]
 
   get 'learn_more', to: 'pages#learn_more'
 end

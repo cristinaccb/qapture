@@ -88,3 +88,14 @@ main {
   margin: 0 auto;
   padding: 20px;
 }
+
+.favorite-button {
+  background: none;
+  border: none;
+  color: rgb(140, 0, 255); /* or your preferred color */
+  cursor: pointer;
+}
+
+.inline-form {
+  display: inline;
+}

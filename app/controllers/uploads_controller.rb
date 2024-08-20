@@ -13,6 +13,16 @@ class UploadsController < ApplicationController
     @upload = @event.uploads.build
   end
 
+  def favorite
+    current_user.favorite_uploads << @upload
+    redirect_to event_uploads_path(@event), notice: 'You have favorited this upload.'
+  end
+
+  def unfavorite
+    current_user.favorite_uploads.delete(@upload)
+    redirect_to event_uploads_path(@event), notice: 'Upload has been unfavorited.'
+  end
+
   def create
     @upload = @event.uploads.build(upload_params)
     @upload.user_id = current_user.id

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :uploads
+    resources :messages, only: [:new, :create, :index]
     member do
       get 'qr_code'
       get 'album'
@@ -26,7 +27,6 @@ Rails.application.routes.draw do
 
     resources :events, only: [:index, :create, :show, :destroy]
     post 'download_selected', on: :member
-    resources :messages, only: [:create, :index]
   end
 
   resources :feature_requests, only: [:new, :create, :index]

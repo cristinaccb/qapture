@@ -1,25 +1,25 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_upload, only: [:create, :destroy]  
+  before_action :set_upload, only: [:create, :destroy]
   def index
     @favorites = current_user.favorites
   end
 
   def create
-    favorite = current_user.favorites.new(upload: @upload)
-    if favorite.save
-      redirect_back(fallback_location: root_path, notice: 'Successfully favorited!')
+    @favorite = current_user.favorites.build(image_id: params[:image_id])
+    if @favorite.save
+      render json: { status: 'success', favorite: @favorite }
     else
-      redirect_back(fallback_location: root_path, alert: 'Could not favorite.')
+      render json: { status: 'error', errors: @favorite.errors.full_messages }
     end
   end
 
   def destroy
-    favorite = current_user.favorites.find_by(upload_id: @upload.id)
-    if favorite&.destroy
-      redirect_back(fallback_location: root_path, notice: 'Successfully unfavorited!')
+    @favorite = current_user.favorites.find_by(image_id: params[:image_id])
+    if @favorite&.destroy
+      render json: { status: 'success' }
     else
-      redirect_back(fallback_location: root_path, alert: 'Could not unfavorite.')
+      render json: { status: 'error', message: 'Favorite not found' }
     end
   end
 

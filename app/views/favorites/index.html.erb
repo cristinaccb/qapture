@@ -1,7 +1,22 @@
-<h1>Your Favorites</h1>
-<div>
-  <% @favorites.each do |favorite| %>
-    <p><%= favorite.name %></p> <!-- Modify according to your model attributes -->
-    <%= link_to 'Delete', favorite_path(favorite), method: :delete, data: { confirm: "Are you sure?" } %>
+<div class="favorites-container">
+  <h1>Your Favorites</h1>
+
+  <% if @favorites.any? %>
+    <ul class="favorites-list">
+      <% @favorites.each do |favorite| %>
+        <li class="favorite-item">
+          <% if favorite.upload %>
+            <p>Upload ID: <%= favorite.upload.id %></p>
+            <p>Uploaded: <%= favorite.upload.created_at.strftime("%B %d, %Y") %></p>
+            <%= link_to 'Remove', favorite_path(favorite), method: :delete,
+                data: { confirm: "Remove from favorites?" }, class: 'remove-btn' %>
+          <% else %>
+            <p>Upload not found</p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No favorites yet. Start exploring to add some!</p>
   <% end %>
 </div>

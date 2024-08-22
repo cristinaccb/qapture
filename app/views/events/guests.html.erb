@@ -13,7 +13,7 @@
           <div class="button-container">
             <%= link_to "View Album", event_uploads_path(@event), class: "btn btn-primary" %>
             <%= link_to "Upload Media", new_event_upload_path(@event), class: "btn btn-secondary" %>
-            <%= link_to "Leave a Message", new_event_upload_path(@event), class: "btn btn-tertiary" %>
+            <%= link_to "Leave a Message", new_event_message_path(@event), class: "btn btn-tertiary" %>
              <%= link_to "View QR", qr_code_event_path(@event), class: "btn btn-secondary" %>
             <!-- Button for Photo/Video Booth -->
             <button id="open-photo-video-booth" class="btn btn-secondary">Take Photo or Video</button>

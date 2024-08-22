@@ -18,3 +18,9 @@
   </div>
 
 <% end %>
+<% @messages.each do |message| %>
+  <div>
+    <p>Uploaded by: <%= message.user.present? ? message.user.name : "Anonymous" %></p>
+    <p><%= message.content %></p>
+  </div>
+<% end %>

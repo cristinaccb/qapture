@@ -1,12 +1,17 @@
 class MessagesController < ApplicationController
   before_action :set_event
 
+  def new
+    @message = @event.messages.build
+  end
+
   def create
     @message = @event.messages.build(message_params)
+    @message.user = current_user if user_signed_in?
     if @message.save
       redirect_to @event, notice: 'Your message was successfully posted.'
     else
-      redirect_to @event, alert: 'There was an error posting your message.'
+      render :new, alert: 'There was an error posting your message.'
     end
   end
 

@@ -4,6 +4,7 @@ class UploadsController < ApplicationController
 
   def index
     @uploads = @event.uploads
+    @messages = @event.messages
   end
 
   def show

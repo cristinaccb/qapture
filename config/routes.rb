@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   end
 
   resources :events do
+
     resources :uploads do
       member do
       post 'favorite', to: 'favorites#create'
       delete 'unfavorite', to: 'favorites#destroy'
       end
     end
+    resources :messages, only: [:new, :create]
 
     member do
       get 'qr_code'
@@ -29,9 +31,12 @@ Rails.application.routes.draw do
       get :manage_uploads
       get :download_album
     end
+
+    resources :events, only: [:index, :create, :show, :destroy]
+    post 'download_selected', on: :member
+
   end
 
-  resources :messages, only: [:create, :index]
   resources :feature_requests, only: [:new, :create, :index]
 
   resources :favorites, only: [:index, :create, :destroy, :show, :new, :edit, :update]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_20_111541) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_22_090651) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_20_111541) do
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.integer "event_id", null: false
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_messages_on_event_id"

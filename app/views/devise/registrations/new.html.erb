@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-</head>
-
 <h2>Create an Account</h2>
 <p>Please enter your details</p>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />

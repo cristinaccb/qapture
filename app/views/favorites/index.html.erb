@@ -1,22 +1,28 @@
 <div class="favorites-container">
   <h1>Your Favorites</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
   <% if @favorites.any? %>
-    <ul class="favorites-list">
+    <div class="favorites-grid">
       <% @favorites.each do |favorite| %>
-        <li class="favorite-item">
+        <article class="favorite-item">
           <% if favorite.upload %>
-            <p>Upload ID: <%= favorite.upload.id %></p>
-            <p>Uploaded: <%= favorite.upload.created_at.strftime("%B %d, %Y") %></p>
-            <%= link_to 'Remove', favorite_path(favorite), method: :delete,
-                data: { confirm: "Remove from favorites?" }, class: 'remove-btn' %>
+            <div class="favorite-content">
+              <p class="upload-id">Upload ID: <%= favorite.upload.id %></p>
+              <p class="upload-date">Uploaded: <%= favorite.upload.created_at.strftime("%B %d, %Y") %></p>
+            </div>
+            <footer class="favorite-footer">
+              <%= link_to 'Remove', favorite_path(favorite), method: :delete,
+                  data: { confirm: "Remove from favorites?" }, class: 'remove-btn' %>
+            </footer>
           <% else %>
-            <p>Upload not found</p>
+            <p class="not-found">Upload not found</p>
           <% end %>
-        </li>
+        </article>
       <% end %>
-    </ul>
+    </div>
   <% else %>
-    <p>No favorites yet. Start exploring to add some!</p>
+    <p class="no-favorites">No favorites yet. Start exploring to add some!</p>
   <% end %>
 </div>

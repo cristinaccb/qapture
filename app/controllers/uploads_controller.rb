@@ -3,7 +3,6 @@ class UploadsController < ApplicationController
   before_action :set_upload, only: [:show, :edit, :update, :destroy]
 
   def index
-    raise
     @uploads = @event.uploads
     @messages = @event.messages
   end

@@ -81,3 +81,5 @@ gem 'carrierwave', '~> 2.0'
 gem 'mini_magick', '~> 4.9'
 
 gem 'rubyzip', '~> 2.3'
+
+gem 'webpacker'

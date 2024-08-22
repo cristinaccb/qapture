@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qapture Mosaics</title>
-    <link rel="stylesheet" href="styles.css">
+    <%= stylesheet_link_tag 'styles', media: 'all' %>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 class="logo"><a href="/">Qapture</a></h1>
+            <h1 class="logo"><%= link_to 'Qapture', root_path %></h1>
             <nav>
-                <a href="/My Uploads">Add Moment</a>
-                <a href="/home">My Events</a>
-                <a href="/Favorites">Favorites</a>
+                <%= link_to 'Add Moment', new_upload_path %>
+                <%= link_to 'My Events', home_path %>
+                <%= link_to 'Favorite', favorite_event_upload_path(event_id: @event.id, id: upload.id), method: :post %>
                 <%= image_tag @upload.file.url if @upload && @upload.file? %>
-
+            </nav>
         </header>
 
         <main>
-            <h2>Your Event Media </h2>
+            <h2>Your Event Media</h2>
             <div id="mosaic-gallery" class="mosaic-gallery">
                 <!-- Mosaic items will be injected here by JavaScript -->
             </div>
@@ -30,6 +30,6 @@
         </footer>
     </div>
 
-    <script src="mosaic.js"></script>
+    <%= javascript_include_tag 'mosaic' %>
 </body>
 </html>

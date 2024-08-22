@@ -12,8 +12,15 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :uploads
-    resources :messages, only: [:new, :create, :index]
+
+    resources :uploads do
+      member do
+      post 'favorite', to: 'favorites#create'
+      delete 'unfavorite', to: 'favorites#destroy'
+      end
+    end
+    resources :messages, only: [:new, :create]
+
     member do
       get 'qr_code'
       get 'album'
@@ -27,14 +34,18 @@ Rails.application.routes.draw do
 
     resources :events, only: [:index, :create, :show, :destroy]
     post 'download_selected', on: :member
+
   end
 
   resources :feature_requests, only: [:new, :create, :index]
 
+  resources :favorites, only: [:index, :create, :destroy, :show, :new, :edit, :update]
+
+  # If you want to manually define a route for the index page:
+  resources :favorites, only: [:index, :create, :destroy]
+
   get 'learn_more', to: 'pages#learn_more'
 end
-
-
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

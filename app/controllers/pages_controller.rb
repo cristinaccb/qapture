@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 
     def home
       @event = Event.new
-      @recent_events = Event.order(created_at: :desc).limit(5)
+      @recent_events = current_user.events.order(created_at: :desc).limit(5)
       @recent_uploads = Upload.order(created_at: :desc).limit(5)
     end
   end

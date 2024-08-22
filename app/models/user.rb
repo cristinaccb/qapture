@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :uploads
-  has_many :events, through: :uploads
+  has_many :events
   has_many :messages, dependent: :destroy
   has_many :favorites
   has_many :favorite_uploads, through: :favorites, source: :upload

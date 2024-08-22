@@ -41,7 +41,7 @@
                                 <div class="card-content">
                                     <h3><%= link_to event.name, event_path(event), aria_label: "View event #{event.name}" %></h3>
                                     <p><strong>Date:</strong> <%= event.date.strftime("%B %d, %Y") %></p>
-                                    <p><strong>Host:</strong> <%= event.host %></p>
+                                    <p><strong>Host:</strong> <%= event.user.name %></p>
                                     <p><strong>Location:</strong> <%= event.location %></p>
                                     <p><strong>Uploads:</strong> <%= event.uploads.count %> photos/videos</p>
                                 </div>

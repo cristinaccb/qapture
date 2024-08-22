@@ -7,10 +7,7 @@
 <% @uploads.each do |upload| %>
   <div>
     <img src="<%= asset_url(upload.file.url) %>" alt="Uploaded Image">
-    <p>Uploaded by: <%= upload.user.present? ? upload.user.name : "Anonymous" %></p>
-    <%= link_to 'Edit', edit_event_upload_path(@event, upload) %> |
     <%= link_to 'Delete', event_upload_path(@event, upload), method: :delete, data: { confirm: 'Are you sure?' } %> |
-
     <%= button_to favorite_event_upload_path(@event, upload), method: :post, class: "favorite-button", form: { class: "inline-form" } do %>
       <i class="fa fa-heart"></i>
     <% end %>

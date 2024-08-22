@@ -9,3 +9,9 @@
     <%= link_to 'Delete', event_upload_path(@event, upload), method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>
+<% @messages.each do |message| %>
+  <div>
+    <p>Uploaded by: <%= message.user.present? ? message.user.name : "Anonymous" %></p>
+    <p><%= message.content %></p>
+  </div>
+<% end %>

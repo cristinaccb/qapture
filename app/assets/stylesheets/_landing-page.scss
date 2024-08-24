@@ -1,11 +1,53 @@
-body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  background: #fafafa;
-  color: #333;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+// Define the main color variables
+$primary-color: #100a24;
+$hover-primary-color: #e286b2;
+$text-color: #3748e0;
+$hover-text-color: #000;
+$background-transparency: rgba(232, 189, 229, 0.8);
+
+html, body {
+  height: 100%;  // Full viewport height
   margin: 0;
   padding: 0;
+  background-size: cover;  // Cover the entire viewport
+  font-family: 'Roboto', sans-serif;  // Modern, clean font
+  overflow-x: hidden;  // Hide horizontal scroll
+  overflow-y: auto;  // Enable vertical scrolling
 }
 
+body {
+  background: #fafafa;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;  // Light font weight for body text
+}
+
+// Font Sizes and Weights for Hierarchy
+h1 {
+  font-size: 3rem;  // Larger size for main headings
+  font-weight: 700;  // Bold for strong visual impact
+  color: $primary-color;
+  margin-bottom: 1rem;  // Space below heading
+}
+
+h2 {
+  font-size: 2rem;  // Size for secondary headings
+  font-weight: 400;  // Regular weight for subheadings
+  color: $primary-color;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1rem;  // Standard size for body text
+  font-weight: 300;  // Light weight for easy readability
+  line-height: 1.5;  // Comfortable line height
+  margin-bottom: 1rem;
+}
+
+// "Polaroid effect" for images
 .cards-grid {
   display: flex;
   overflow-x: auto;
@@ -22,30 +64,113 @@ body {
     scroll-snap-align: start;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     min-width: 300px;
     padding: 20px;
     text-align: left;
   }
 }
 
-footer {
-  text-align: center;
-  padding: 20px 0;
-  font-size: 14px;
-  color: var(--text-color);
+.logo-container img {
+  height: 60px;  // Fixed logo height
 }
 
-@media (max-width: 100px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.login-button {
+  background: transparent;
+  border: 2px solid $primary-color;
+  color: $primary-color;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background: $primary-color;
+    color: white;
+  }
+}
+
+main {
+  padding-top: 120px;  // Offset for fixed header
+  text-align: center;
+
+  h1 {
+    font-size: 48px;  // Emphasize main headline
+    font-weight: 700;  // Bold font for main headline
+    color: $primary-color;
   }
 
-  nav {
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    align-items: center;
+  h2 {
+    font-size: 24px;  // Smaller subheadings
+    font-weight: 400;  // Regular weight
+    color: $primary-color;
+    margin-bottom: 20px;  // Space between elements
+  }
+
+  p {
+    font-size: 16px;  // Standard paragraph text
+    font-weight: 300;  // Light font for easy reading
+  }
+}
+
+.cta-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;  // Make the CTA text bold
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: $hover-primary-color;
+  }
+}
+
+.background-video iframe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;  // Ensures video remains in the background
+  pointer-events: none;  // Non-interactive
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 30px;
+  background: $background-transparency;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.learn-more-link {
+  margin-top: 20px; // Adds some space between the button and the link
+  text-align: center;
+
+  a {
+    color: #9dff00; // Swift-like blue color
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 500; // Regular weight for links
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #fff719; // Darker blue on hover
+    }
   }
 }

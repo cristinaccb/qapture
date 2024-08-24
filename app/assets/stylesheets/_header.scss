@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 :root {
-  --primary-color: #BB86FC;
+  --primary-color: #564ead;
   --secondary-color: #03DAC5;
   --accent-color: #CF6679;
   --background-color: #ffffff;
-  --text-color: #444;
+  --text-color: #242748;
   --font-family: 'Montserrat', sans-serif;
 }
 
@@ -62,4 +62,17 @@ nav {
     align-items: center;
     justify-content: center;
   }
+}
+
+.cta-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.waitlist-icon {
+  width: 30px; /* Adjust the size as needed */
+  height: 30px;
+  margin-right: 10px; /* Space between the image and the button */
 }

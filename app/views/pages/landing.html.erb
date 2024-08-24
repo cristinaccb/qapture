@@ -1,50 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qapture</title>
-<%= javascript_include_tag 'script', 'data-turbolinks-track': 'reload', defer: true %>
-<%= stylesheet_link_tag '_landing-page', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qapture</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Neomorphic styling with transparency for the email tab */
+        .email-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px; /* Reduced padding to make it thinner */
+            background: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+            border-radius: 8px; /* Reduced border-radius to fit the new size */
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.7);
+            max-width: 600px; /* Made the tab longer */
+            width: 80%; /* Ensures responsiveness */
+            margin: 50px auto;
+            text-align: center;
+            backdrop-filter: blur(10px); /* Adds a glass effect */
+        }
+
+        .email-tab h2 {
+            margin-bottom: 12px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .email-input-container {
+            display: flex;
+            width: 100%;
+            align-items: center;
+        }
+
+        .email-tab input[type="email"] {
+            padding: 10px;
+            flex: 1; /* Allows the input to take up remaining space */
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.7); /* Semi-transparent input background */
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.7);
+            margin-right: 12px;
+            font-size: 16px;
+            outline: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .email-tab input[type="email"]:focus {
+            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2), inset -2px -2px 4px rgba(255, 255, 255, 0.7);
+        }
+
+        .email-tab button {
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent button background */
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.7);
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .email-tab button:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px -2px 4px rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-container {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <img id="logo" src="logo.png" alt="Qapture Logo">
-        <nav class="buttons">
-            <a href="/learn_more" class="button">Learn More</a>
-            <a href="<%= new_event_path %>" class="button">Create New Event</a>
-        </nav>
+        <div class="logo-container">
+            <img src="logo.png" alt="Qapture Logo" class="logo">
+            <div class="auth-buttons">
+                <div class="dropdown-menu">
+                    <a href="/users/sign_up">Sign Up</a>
+                    <a href="/users/sign_in">Sign In</a>
+                </div>
+            </div>
+        </div>
     </header>
-
-    <div class="items-container"></div>
-
-
-    <div class="wrapper">
-      <nav>
-        <div class="nav-item">
-      </nav>
-      <div class="header">
-      </div>
-    </div>
-
     <main>
-        <h1>Where Moments Are Immortalized</h1>
-        <section class="email-signup">
-            <label for="emailInput" class="visually-hidden">Enter your email here to:</label>
-            <input type="email" id="emailInput" placeholder="Capture Moments">
-            <button>Join Beta</button>
-        </section>
+        <h1>Your photos app, but with friends ★</h1>
+        <div class="learn-more-link">
+            <a href="/learn_more">Want to learn more about Qapture? Click here!</a>
+        </div>
+
+        <!-- Neomorphic Email Tab with Transparency, Longer and Skinnier -->
+        <div class="email-tab">
+            <h2>Join the Waitlist</h2>
+            <div class="email-input-container">
+                <input type="email" id="emailInput" placeholder="Enter your email" required>
+                <button type="button" onclick="submitEmail()">Submit</button>
+            </div>
+        </div>
     </main>
 
-    <div class="dropdown-menu">
-        <a href="/users/sign_up">Sign Up</a>
-        <a href="/users/sign_in">Sign In</a>
+    <div class="background-video">
+        <iframe src="https://player.vimeo.com/video/998936457?background=1&autoplay=1&muted=1&loop=1"
+                frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+        </iframe>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="<%= asset_path('script.js') %>"></script>
     <script>
-    // Include additional JavaScript for interactive elements as needed
+        function submitEmail() {
+            var email = document.getElementById('emailInput').value;
+            console.log('Email submitted:', email);
+            // Add AJAX call or form submission logic here
+        }
     </script>
+    <footer>
+        <div class="footer-container">
+            <span>© 2024 Qapture. All rights reserved.</span>
+        </div>
+    </footer>
 </body>
 </html>
+

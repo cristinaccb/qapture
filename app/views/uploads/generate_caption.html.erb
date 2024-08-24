@@ -1,0 +1,7 @@
+<h1>Generated Caption</h1>
+<p><%= @upload.caption.present? ? @upload.caption : "No caption available" %></p>
+<%= button_to 'Try Again', generate_caption_event_upload_path(@event, @upload), method: :post, class: "try-again-button" %>
+
+<%= form_with(model: @upload, url: post_to_social_media_event_upload_path(@event, @upload), method: :post) do |form| %>
+  <%= form.submit "Post to Social Media" %>
+<% end %>

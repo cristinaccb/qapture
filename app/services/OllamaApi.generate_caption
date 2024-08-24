@@ -1,0 +1,19 @@
+class OllamaApi
+  include HTTParty
+  base_uri 'http://localhost:11434'  # Ensure this server is running
+
+  def self.generate_caption(prompt)
+    response = post('/generate_caption', body: { prompt: prompt }.to_json, headers: { 'Content-Type' => 'application/json' })
+
+    Rails.logger.debug "API Response: #{response.body}"
+
+    if response.success?
+      response.parsed_response['caption']  # This assumes the API returns JSON with a "caption" key
+    else
+      nil  # Handle failure to connect or process the response
+    end
+  rescue => e
+    Rails.logger.error "API call failed: #{e.message}"
+    nil
+  end
+end

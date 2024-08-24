@@ -5,28 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qapture Albums</title>
     <link rel="stylesheet" href="_main-style.scss">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="container">
         <header class="main-header">
+                  <div class="logo-container">
+            <img src="logo.png" alt="Qapture Logo" class="logo">
             <h1 class="logo"><a href="/" aria-label="Qapture Home">Qapture</a></h1>
             <% if user_signed_in? %>
                 <nav class="user-nav" aria-label="User Navigation">
-                    <a href="#" onclick="history.back()" class="button">Back</a>
-                    <%= button_to 'Log out', destroy_user_session_path, method: :delete, class: 'button' %>
                 </nav>
             <% end %>
         </header>
-
-        <!-- Main navigation links for the app -->
-        <nav class="main-nav" aria-label="Primary Navigation">
-            <a href="/feature_requests/new">🙋🏻‍♀️ Request a Feature</a>
-            <%= link_to '🥂 Favorites', favorites_path %>
-            <%= link_to '📸 Create New', new_event_path, class: 'button' %>
-        </nav>
-
-        <main>
+            <nav class="top-nav">
+                <div class="nav-wrapper">
+                    <div class="nav-section primary">
+                        <a href="/create-new" class="nav-button create-new">📸 Create New</a>
+                        <a href="/favorites" class="nav-button favorites">🥂 Favorites</a>
+                    </div>
+                    <div class="nav-section secondary">
+                        <a href="/request-feature" class="nav-button request-feature">🙋 Request a Feature</a>
+                        <a href="/usersignout" class="nav-button log-out">Log Out</a>
+                    </div>
+                </div>
+            </nav>
+            <main>
             <!-- Recent events section displayed as horizontal cards -->
             <section class="recent-events">
                 <h2>Your Recent Events</h2>

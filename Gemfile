@@ -82,8 +82,6 @@ gem 'mini_magick', '~> 4.9'
 
 gem 'rubyzip', '~> 2.3'
 
-gem 'webpacker'
+# gem 'webpacker'
 
 gem 'httparty'
-
-

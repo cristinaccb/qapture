@@ -1,4 +1,4 @@
-class QrCodeController < ApplicationRecord
+class QrCodesController < ApplicationRecord
   belongs_to :event
 
   before_create :generate_qr_code_data

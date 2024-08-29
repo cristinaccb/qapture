@@ -1,11 +1,5 @@
-const { environment } = require('@rails/webpacker')
+process.env.NODE_ENV = process.env.NODE_ENV || 'production'
 
-// Add additional entry points if needed
-environment.config.merge({
-  entry: {
-    application: './app/javascript/packs/application.js',
-    // Add more entry points here if needed
-  }
-})
+const environment = require('./environment')
 
-module.exports = environment
+module.exports = environment.toWebpackConfig()

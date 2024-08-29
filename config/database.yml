@@ -7,12 +7,12 @@ default: &default
 
 development:
   <<: *default
-  database: Qapture_development
+  database: qapture_development
 
 test:
   <<: *default
-  database: Qapture_test
+  database: qapture_test
 
 production:
   <<: *default
-  database: Qapture_production
+  database: qapture_production

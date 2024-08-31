@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
   before_action :set_event
-  before_action :set_message, only: [:destroy]
 
   def new
     @message = @event.messages.build
@@ -14,11 +13,6 @@ class MessagesController < ApplicationController
     else
       render :new, alert: 'There was an error posting your message.'
     end
-  end
-
-  def destroy
-    @message.destroy
-    redirect_to @event, notice: 'Message was successfully deleted.'
   end
 
   private

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
       end
     end
-    resources :messages, only: [:create, :new, :destroy]
+    resources :messages, only: [:create, :new]
     member do
       get 'qr_code'
       get 'album'

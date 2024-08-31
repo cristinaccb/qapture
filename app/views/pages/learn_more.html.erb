@@ -1,100 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qapture</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --background-color: #F2F2F7;
+            --card-background: #FFFFFF;
+            --text-color: #1C1C1E;
+            --secondary-text-color: #8E8E93;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav span {
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--secondary-text-color);
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
 <body>
     <header>
-        <div class="logo-container">
-            <img id="logo" src="logo.png" alt="Qapture Logo">
-            <nav class="buttons">
-                <a href="/learn_more" class="button">Learn More</a>
-                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
-            </nav>
-        </div>
+        <h1>Qapture</h1>
+        <nav>
+            <a href="/" class="nav-button home"><span>Home</span></a>
+
+        </nav>
     </header>
 
-    <main class="container">
-        <div class="section">
-            <h1>Welcome to Qapture!</h1>
-            <p>Qapture is the simplest way to collect, share, and relive your favorite moments. Whether it's a spontaneous outing or a family gathering, Qapture makes it easy to bring all your photos and videos together, accessible to everyone who matters.</p>
-        </div>
-
-        <div class="section">
-            <h2>How It Works</h2>
-            <p><strong>Effortless, Unified, Timeless</strong></p>
-            <ol>
-                <li><strong>Capture with Ease:</strong> Snap photos or videos, and Qapture automatically organizes them for you.</li>
-                <li><strong>Instant Sharing:</strong> Share a unique QR code with friends and family to instantly gather their moments.</li>
-                <li><strong>Relive the Good Times:</strong> Enjoy all your shared moments in one beautifully organized digital album.</li>
-            </ol>
-        </div>
-
-        <div class="section">
-            <h2>Key Features</h2>
-            <p><strong>Qapture offers features that enhance your experience:</strong></p>
-            <ul>
-                <li><strong>Automatic Organization:</strong> No more scattered photos. Qapture keeps everything neatly in one place.</li>
-                <li><strong>Inclusive Sharing:</strong> Everyone can contribute and access shared moments, ensuring nothing gets missed.</li>
-                <li><strong>Universal Accessibility:</strong> Access your moments on any device, anywhere, anytime.</li>
-                <li><strong>Always Secure:</strong> Your memories are protected with advanced security measures.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Benefits</h2>
-            <p><strong>Why Choose Qapture?</strong></p>
-            <ul>
-                <li><strong>Never Lose a Moment:</strong> Qapture ensures your moments are never accidentally deleted or lost.</li>
-                <li><strong>Simplified Sharing:</strong> Share your memories effortlessly, with everything in one place.</li>
-                <li><strong>Accessible to Everyone:</strong> Qapture is easy to use for everyone, regardless of tech-savviness.</li>
-                <li><strong>Cost-Effective:</strong> Save on storage fees and avoid juggling multiple apps.</li>
-            </ul>
-        </div>
-
-        <div class="section testimonials">
-            <h2>Testimonials</h2>
-            <p><em>“Qapture saved me from the chaos of organizing my photos. Everything is beautifully arranged and easy to access.”</em> - Sarah M.</p>
-            <p><em>“I love how I can share moments with my family so effortlessly. It feels like we’re always connected.”</em> - Daniel T.</p>
-        </div>
-
-        <div class="section faq">
-            <h2>FAQs</h2>
-            <dl>
-                <dt>Q: How does it work?</dt>
-                <dd>A: Just capture your moments as usual; Qapture takes care of the rest.</dd>
-
-                <dt>Q: Is there a limit to the number of photos or videos I can upload?</dt>
-                <dd>A: No limits. Your memories are unlimited.</dd>
-
-                <dt>Q: How secure is Qapture?</dt>
-                <dd>A: We use cutting-edge security to keep your memories safe.</dd>
-
-                <dt>Q: Can I access my photos on multiple devices?</dt>
-                <dd>A: Yes, your memories are available wherever you are.</dd>
-
-                <dt>Q: Is Qapture free?</dt>
-                <dd>A: Enjoy our core features for free, with premium options for more capabilities.</dd>
-            </dl>
-        </div>
+    <main>
+        <section class="card">
+            <h2>Capture Moments</h2>
+            <p>Effortlessly collect and organize your memories.</p>
+        </section>
+        <section class="card">
+            <h2>Share Instantly</h2>
+            <p>Connect with friends and family through shared experiences.</p>
+        </section>
+        <section class="card">
+            <h2>Relive Memories</h2>
+            <p>Access your moments anytime, anywhere.</p>
+        </section>
     </main>
-
-    <div class="dropdown-menu">
-        <a href="/">Home</a>
-        <a href="/signup">Sign Up</a>
-        <a href="/signin">Sign In</a>
-    </div>
-
-    <footer>
-        <p>&copy; 2024 Qapture. All rights reserved.</p>
-    </footer>
-
-    <script src="landing.js" defer></script>
 </body>
-
 </html>

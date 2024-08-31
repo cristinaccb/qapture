@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_08_24_091753) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,19 +44,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_091753) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.datetime "date"
+    t.datetime "date", precision: nil
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
     t.text "description"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "upload_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "upload_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["upload_id"], name: "index_favorites_on_upload_id"
@@ -69,8 +72,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_091753) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.integer "event_id", null: false
-    t.integer "user_id"
+    t.bigint "event_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_messages_on_event_id"
@@ -78,7 +81,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_091753) do
   end
 
   create_table "qr_codes", force: :cascade do |t|
-    t.integer "event_id", null: false
+    t.bigint "event_id", null: false
     t.string "qrCodeUrl"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -87,11 +90,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_091753) do
   end
 
   create_table "uploads", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "event_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
     t.string "mediaType"
     t.string "mediaUrl"
-    t.datetime "timestamp"
+    t.datetime "timestamp", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"

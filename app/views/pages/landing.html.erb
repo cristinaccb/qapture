@@ -5,72 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qapture</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-        /* Neomorphic styling with transparency for the email tab */
-        .email-tab {
+        /* Existing styles... */
+
+        /* Updated button styling */
+        .auth-buttons {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            padding: 10px 20px; /* Reduced padding to make it thinner */
-            background: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
-            border-radius: 8px; /* Reduced border-radius to fit the new size */
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.7);
-            max-width: 600px; /* Made the tab longer */
-            width: 80%; /* Ensures responsiveness */
-            margin: 50px auto;
-            text-align: center;
-            backdrop-filter: blur(10px); /* Adds a glass effect */
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .email-tab h2 {
-            margin-bottom: 12px;
-            font-size: 20px;
-            color: #333;
-        }
-
-        .email-input-container {
-            display: flex;
-            width: 100%;
-            align-items: center;
-        }
-
-        .email-tab input[type="email"] {
-            padding: 10px;
-            flex: 1; /* Allows the input to take up remaining space */
-            border-radius: 8px;
+        .auth-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.7);
             border: none;
-            background: rgba(255, 255, 255, 0.7); /* Semi-transparent input background */
-            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.7);
-            margin-right: 12px;
+            border-radius: 30px;
+            color: #333;
             font-size: 16px;
-            outline: none;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .email-tab input[type="email"]:focus {
-            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2), inset -2px -2px 4px rgba(255, 255, 255, 0.7);
-        }
-
-        .email-tab button {
-            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent button background */
-            color: #333;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 16px;
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.7);
-            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+            text-decoration: none;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .email-tab button:hover {
-            background-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px -2px 4px rgba(255, 255, 255, 0.7);
+        .auth-button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
         }
 
-        .cta-container {
-            text-align: center;
+        .auth-button:active {
+            transform: translateY(0);
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1), inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+        }
+
+        .auth-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            transition: all 0.5s;
+        }
+
+        .auth-button:hover::before {
+            left: 100%;
+        }
+
+        /* Adjust main content spacing */
+        main {
+            padding-top: 50px;
+        }
+
+        .email-tab {
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -78,14 +79,9 @@
     <header>
         <div class="logo-container">
             <img src="logo.png" alt="Qapture Logo" class="logo">
-            <div class="auth-buttons">
-                <div class="dropdown-menu">
-                    <a href="/users/sign_up">Sign Up</a>
-                    <a href="/users/sign_in">Sign In</a>
-                </div>
-            </div>
         </div>
     </header>
+
     <main>
         <h1>Your photos app, but with friends ★</h1>
         <div class="learn-more-link">
@@ -100,6 +96,12 @@
                 <button type="button" onclick="submitEmail()">Submit</button>
             </div>
         </div>
+
+        <!-- Centered Sign Up and Sign In buttons -->
+        <div class="auth-buttons">
+            <a href="/users/sign_up" class="auth-button">Sign Up</a>
+            <a href="/users/sign_in" class="auth-button">Sign In</a>
+        </div>
     </main>
 
     <div class="background-video">
@@ -113,6 +115,37 @@
             console.log('Email submitted:', email);
             // Add AJAX call or form submission logic here
         }
+
+        // GSAP Animations
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Animate the main content
+            gsap.from("main > *", {
+                duration: 1,
+                opacity: 0,
+                y: 30,
+                stagger: 0.2,
+                ease: "power2.out"
+            });
+
+            // Add hover animation to auth buttons
+            document.querySelectorAll('.auth-button').forEach(button => {
+                button.addEventListener('mouseenter', (e) => {
+                    gsap.to(e.target, {
+                        duration: 0.3,
+                        scale: 1.05,
+                        ease: "power1.out"
+                    });
+                });
+
+                button.addEventListener('mouseleave', (e) => {
+                    gsap.to(e.target, {
+                        duration: 0.3,
+                        scale: 1,
+                        ease: "power1.out"
+                    });
+                });
+            });
+        });
     </script>
     <footer>
         <div class="footer-container">
@@ -121,4 +154,3 @@
     </footer>
 </body>
 </html>
-
